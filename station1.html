@@ -53,7 +53,7 @@
                 <p class="casillas-metadato" id="estado-piston">1</p>
 
                 <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato" id="bandeja-entrante">1</p>
+                <p class="casillas-metadato" id="bandeja-perturbacion">1</p>
             <!--":="DB1200".est1:"-->
             </div>
             
@@ -199,7 +199,7 @@ setInterval(controlador(),1000)
                         pisD[15].setAttribute('class','piston-abajo-simulacion');
                         pisD[17].setAttribute('class','piston-abajo-simulacion');
                         //Evalua el porcentaje y dice rojo, verde o rojo verde por debajo, igual o encima de 50%
-                        if(porcentaje>100){
+                        if(porcentaje>=100){
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
 
