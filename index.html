@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Emergency Control Platform</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="/styles/visual.css">
+</head>
+<body>
+
+    <header class="site-header inicio">
+        <div class="contenedor contenido-header">
+            <div class="barra">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Logotipo de Bienes Raices">
+                </a>
+
+                <div class="mobile-menu">
+                    <a href="#navegacion" class="boton boton-verde">Menu
+                    </a>
+                </div>
+
+                <nav id="navegacion" class="navegacion">
+                    <a href="/">Home</a>
+                    <a href="#stations">Monitoring Stations</a>
+                    <a href="#Overview">Overview Process</a>
+                    <a href="historics.html">Historics</a>
+                    
+
+                </nav>
+            </div>
+          
+        </div> <!-- contenedor -->
+    </header>
+
+
+
+
+
+
+
+
+
+<div class="fondo-sobrenosotros">
+    <section class="contenedor seccion color-fondo">
+        <h1>Emergency Control Platform</h1>
+                <p>This is a monitoring emergency system of APELL which supervises a four stations of
+                    a process. If something went wrong in this process, an alert will be sent 
+                    in order to control the technological accident. Besides, the platform can also calculate
+                    the economical impact in the company because of the accident in the process.
+                </p>
+
+        </div>
+    </section>
+</div>
+
+
+
+
+
+    <main class="seccion contenedor"> 
+
+        <h3 id="Overview" class="fw-300 centrar-texto">Process Overview</h3>
+        <div class="grid-informacion">
+            <div class="contenedor-general centrar-texto">
+                <p class="casillas-ss">State:</p> 
+                <p class="casillas-metadato">1</p>
+                <button type="submit" class="Button1">On/Off</button>
+            </div>
+            <div class="contenedor-general centrar-texto">
+                <p class="casillas-ss">Speed:</p>
+                <p class="casillas-metadato">:="DB1.DBD0":</p>
+
+                <form method="post">
+                    <p><input name='DB1.DBD0' id="vel" type="range" min="0" max="60" step="1" value="">
+                    <label></label></p>
+                    <button type="submit" class="Button">Aceptar</button>
+                </form>
+                <br>
+            </div>
+        </div>
+
+
+
+        <h2 id="stations" class="fw-300 centrar-texto">Stations</h2>
+
+        <div class="contenedor-anuncios">
+            <div class="anuncio">
+
+                <div class="contenido-anuncio">
+                    <h3>Station 1</h3>
+                    <p>Sets the solvent required to start the reaction.</p><br>
+
+
+
+
+                    <a href="station1.html" class="boton boton-amarillo d-block">Go to station 1</a>
+                </div>
+            </div>
+
+            <div class="anuncio">
+
+                <div class="contenido-anuncio">
+                    <h3>Station 2</h3>
+                    <p>Mixes the materials into the reactor in order to start the reaction among them.</p>
+
+
+                    <a href="station2.html" class="boton boton-amarillo d-block">Go to station 2</a>
+                </div>
+            </div>
+
+            <div class="anuncio">
+
+                <div class="contenido-anuncio">
+                    <h3>Station 3</h3>
+                    <p>Controls the temperature of the reaction with a refrigerant.</p>
+
+
+                    <a href="station3.html" class="boton boton-amarillo d-block">Go to station 3</a>
+                </div>
+                
+            </div>
+            <div class="anuncio">
+                <div class="contenido-anuncio">
+                    <h3>Station 4</h3>
+                    <p>Shakes the solutions to mix correctly the materials of the reaccion</p>
+
+
+                    <a href="station4.html" class="boton boton-amarillo d-block">Go to station 4</a>
+                </div>
+            </div>
+            <div class="anuncio">
+                <div class="contenido-anuncio">
+                    <h3>Station 5</h3>
+                    <p>Transports the final product</p>
+                    <br>
+
+                    <a href="station5.html" class="boton boton-amarillo d-block">Go to station 4</a>
+                </div>
+                
+            </div>
+            <div class="anuncio">
+                <div class="contenido-anuncio">
+                    <h3>Historics</h3>
+                    <p>All the data recolected and saved of the process</p>
+                    <br>
+
+
+                    <a href="historics.html" class="boton boton-amarillo d-block">Go to station 4</a>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    </main>
+
+
+
+    <footer class="site-footer seccion">
+        <div class="contenedor contenedor-footer">
+            <nav id="navegacion" class="navegacion">
+                <a href="/">Home</a>
+                <a href="#stations">Monitoring Stations</a>
+                <a href="#Overview">Overview Process</a>
+                <a href="historics.html">Historics</a>
+
+            </nav>
+            <p class="copyright">Todos los Derechos Reservados 2020&copy; </p>
+        </div>
+    </footer>
+</body>
+</html>
+<script>
+    var input = document.querySelector("input[type=range]");
+          actualizarInput(input) 
+    
+          input.addEventListener("input", function(evt) {
+            actualizarInput(input)
+          });
+    
+          function actualizarInput(input){
+            var label = input.parentElement.querySelector("label");
+            label.innerHTML = input.value;
+            var inputMin = input.getAttribute("min");
+            var inputMax = input.getAttribute("max");
+            var unidad = (inputMax - inputMin) / 100;
+            input.style.setProperty("--value", (input.value - inputMin)/unidad);  
+          } 
+     </script>
