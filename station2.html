@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Station 2</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="/styles/visual.css">
 </head>
 <body>
@@ -47,27 +46,64 @@
                 
 
             <div class="contenedor-general centrar-texto">
+                <p class="casillas-ss">In Place</p>
+                <p class="casillas-metadato"id="in-place">1</p> 
+
                 <p class="casillas-ss">Piston states:</p> 
                 <p class="casillas-metadato">1</p>
-                <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato">:="DB1200".est2:</p>
-            </div>
 
+                <p class="casillas-ss">Tray: </p>
+                <p class="casillas-metadato" id="bandeja-perturbacion">2</p>
+            </div>
+<!--:="DB1200".est2:-->
             <div class="centrar-texto">
                 <div class="contenedor-baliza">
-                    <div class="luz-roja"></div>
-                        <div class="luz-verde"></div>
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">0</p></div>
+                        <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">1</p></div>
                 </div>
             </div>
         </div>
 
         <div id="sim-ecoimp" class="contenedor centrar-texto">
             <h2>simulation and economical impact</h2>
-        </div>
-        <div class="informacion-station">
-            <div class="centrar-texto">
-                <h3>Simulation</h3>
-            </div>
+            <div class="informacion-station">
+                <div class="centrar-texto">
+                    <h3>Simulation</h3>
+                    <div class="grid-informacion">
+    
+                    <form action="">
+                        <label for="fname" class="label-tank">Percentage of material 1</label>
+                        <input type="number" id="porcentaje-mat1" name="fname" min="0" max="100">
+                        <label for="fname" class="label-tank">Percentage of material 2</label>
+                        <input type="number" id="porcentaje-mat2" name="fname" min="0" max="100">
+                        <button class="boton boton-amarillo" onclick="simulacion2Mat1()" type="button" >Ok</button>
+                        <p id="mensaje1"></p>
+
+
+                        <div class="estacion-simulacion">
+                            <div class="piston-arriba-simulacion2"></div>
+                            <div class="bandeja-simulacion2"></div>
+                            <div class="piston-arriba-simulacion2"></div>
+                        </div>
+                    </form>
+                        <div class="contenedor-baliza-simulacion">
+                            <div class="luz-roja-apagada-simulacion"></div>
+                            <div class="luz-verde-apagada-simulacion"></div>
+                        </div>
+                </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
             </div>
@@ -98,6 +134,7 @@
             <p class="copyright">Todos los Derechos Reservados 2020 &copy; </p>
         </div>
     </footer>
+
 </body>
 </html>
 
@@ -106,5 +143,125 @@
 
 
 
+<script>
+  </script>
+<script type="text/javascript">
+    function controlador(){
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function(){
+    
+    var colorRojo = document.getElementById('color-luz-rojo');
+    var luzRoja = colorRojo.innerHTML;
+    var balizaRoja = document.getElementsByTagName('div');
+    var balizaPert = document.getElementById('bandeja-perturbacion');
+    var lanzarAlerta= balizaPert.innerHTML;
+    console.log(lanzarAlerta);
+    if(lanzarAlerta == 3){
+        alert('An error has ocurred')
+    };
+    
+    if(luzRoja == 1){
+        balizaRoja[8].setAttribute('class','luz-roja');
+    }else{
+        balizaRoja[8].setAttribute('class','luz-roja-apagada');
+    };
 
+    var colorVerde = document.getElementById('color-luz-verde');
+    var luzVerde = colorVerde.innerHTML;
+    var balizaVerde = document.getElementsByTagName('div');
+    if(luzVerde == 1){
+        balizaVerde[9].setAttribute('class','luz-verde');
+    }else{
+        balizaVerde[9].setAttribute('class','luz-verde-apagada');
+    };
+    
+});
+};
+setInterval(controlador(),1000)
+
+
+    function simulacion2Mat1(){
+
+
+        
+        var porcentajeMat1 = document.getElementById('porcentaje-mat1').value;
+        var porcentajeMat2 = document.getElementById('porcentaje-mat2').value;
+
+
+            if (porcentajeMat1<=0 || porcentajeMat1>100  ){
+                alert('The percentage of material 1 is not correct, please set another value');
+            }
+            else{
+                var colorRojoSim = document.getElementsByTagName('div');
+                var colorVerdeSim= document.getElementsByTagName('div');
+                var pisD =  document.getElementsByTagName('div');
+                var tiempoTotal1 = Math.round(porcentajeMat1/10);
+                var tiempoTotal2 = Math.round(porcentajeMat2/10);
+                var tiempoTotal  = Math.round(tiempoTotal1+tiempoTotal2);
+                var counter = 0;     
+
+
+                var i = setInterval(function(){
+                    counter++; //contador de iteraciones
+                    var load = Math.round((counter/tiempoTotal)*100); //porcentaje del proceso
+                    document.getElementById("mensaje1").innerHTML = "We are adding the materials, wait a while:"+load+"%";
+                    porcentaje1 = parseInt(porcentajeMat1);
+                    porcentaje2 = parseInt(porcentajeMat2);
+                    porcentajeTotal= porcentaje1+porcentaje2;
+                    if(counter === tiempoTotal) {
+                        clearInterval(i);
+
+                                colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
+                                colorRojoSim[19].setAttribute('class','luz-roja-simulacion');
+                                document.getElementById("mensaje1").innerHTML = "" ;
+                            setTimeout(()=>{
+                            if(Math.abs(porcentajeMat1-porcentajeMat2)>30){
+                                colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                                colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
+                                alert('An error has ocurred: The diference between the materials is significant');
+                                pisD[15].setAttribute('class','piston-abajo-simulacion2');
+                                pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                            }
+                            else if((porcentajeTotal)>100){
+                                colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                                colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
+                                alert('An error has ocurred: the materials exceeds the capacity of the tank');
+                                pisD[15].setAttribute('class','piston-abajo-simulacion2');
+                                pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                            }
+                            else{
+                                colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
+                                colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion'); 
+                                pisD[15].setAttribute('class','piston-abajo-simulacion2');
+                                pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                            }
+                                setTimeout(function Reset(){
+
+
+                                    pisD[15].setAttribute('class','piston-arriba-simulacion2');
+                                    pisD[17].setAttribute('class','piston-arriba-simulacion2');
+                                    colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                                    colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');
+                                    document.getElementById("mensaje1").innerHTML = "" ;
+
+                                }, 5000);
+                            
+                            
+                            },1000);
+                            //funcion para reiniciar todo
+                            
+                    };
+                }, 1000);
+                        
+
+
+
+    }
+    };
+      
+
+
+
+
+</script>
 

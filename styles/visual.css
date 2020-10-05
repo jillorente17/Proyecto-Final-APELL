@@ -408,6 +408,16 @@ h4 {
 }
 
 /*luz roja*/
+.luz-roja-apagada{
+    background-color: rgb(97, 28, 28);
+    width: 90%;
+    height: 45%;
+    border-radius: 5% 5% 0% 0%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 5%;
+
+}
 .luz-roja{
     background-color: red;
     width: 90%;
@@ -415,11 +425,27 @@ h4 {
     border-radius: 5% 5% 0% 0%;
     margin-right: auto;
     margin-left: auto;
+    padding-top: 5%;
 
 }
+
 /*luz verde*/
+.luz-verde-apagada{
+    background-color: rgb(23, 71, 23);
+    width: 90%;
+    height: 45%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 0% 0% 5% 5% ;
+    
+  
+}
+.opaco{
+    opacity: 0;
+}
+
 .luz-verde{
-    background-color: green;
+    background-color: rgb(13, 214, 13);
     width: 90%;
     height: 45%;
     margin: auto;
@@ -458,16 +484,18 @@ h4 {
     background-color: rgba(137, 43, 226, 0);
     font-size: 3rem;
 }
+
 .contenedor.centrar-texto h2{
     text-transform: uppercase;
 }
 .contenedor-general{
-    margin:auto auto;
+    margin-left: 3rem;
     width: 100%;
     height: 100%;
     background: rgba(174,237,92,1);
-    margin-bottom:4rem;
+    margin-bottom:0rem;
     position: center;
+
 }
 .casillas-ss{
     width: 100%;
@@ -479,10 +507,127 @@ h4 {
 }
 .grid-informacion{
     display:grid;
+    align-items: centery;
     grid-column-gap: 1rem;
     grid-template-columns: repeat(2,50%);
 }
+/*Simulación*/
+.label-tank{
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+#porcentaje, #porcentaje-mat1, #porcentaje-mat2{
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+}
+.label-tank{
+    font-size:1.7rem;
+}
+
+.contenedor-baliza-simulacion{
+
+    height: 35rem;
+    background-color: black;
+    width: 95%;
+    margin-left: 0%;
+    margin-top: 2.5rem;
+    margin-bottom: auto;
+    border-radius: 5%;
+    padding-top: 1rem;
+    border: solid 10px;
+
+}
+.luz-roja-apagada-simulacion{
+    background-color: rgb(97, 28, 28);
+    width: 90%;
+    height: 45%;
+    border-radius: 5% 5% 0% 0%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 5%;
+
+}
+.luz-roja-simulacion{
+    background-color: red;
+    width: 90%;
+    height: 45%;
+    border-radius: 5% 5% 0% 0%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 5%;
+
+}
+
+/*luz verde*/
+.luz-verde-apagada-simulacion{
+    background-color: rgb(23, 71, 23);
+    width: 90%;
+    height: 45%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 0% 0% 5% 5% ;
+    
+  
+}
+.luz-verde-simulacion{
+    background-color: rgb(13, 214, 13);
+    width: 90%;
+    height: 45%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 0% 0% 5% 5% ;
+  
+}
+.estacion-simulacion{
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+.piston-arriba-simulacion{
+    margin-top:50%;
+    height: 5rem;
+    width:3rem;
+    background-color: grey;
+}
+.piston-arriba-simulacion2{
+    margin-top:10%;
+    height: 5rem;
+    width:3rem;
+    background-color: grey;
+}
+.piston-abajo-simulacion{
+    margin-top:70%;
+    height: 1.5rem;
+    width:3rem;
+    background-color: grey;
+}
+.piston-abajo-simulacion2{
+    margin-top:20%;
+    height: 1.5rem;
+    width:3rem;
+    background-color: grey;
+}
+/*bandeja*/
+.bandeja-simulacion{
+    width:65%;
+    height: 3rem;
+    background-color: black;
+    margin-bottom: 0%;
+    margin-top:55%;
+}
+.bandeja-simulacion2{
+    width:75%;
+    height: 3rem;
+    background-color: black;
+    margin-bottom: 0%;
+    margin-top:5%;
+}
 /*Slider*/
+
+
+
 .Button {
 	box-shadow:inset 0px 1px 0px 0px #0A7340;
 	background-color:#068A2A;
@@ -507,17 +652,17 @@ h4 {
 	position:relative;
 	top:1px;
 }
-input[type='range']:focus {
+input#vel:focus {
     outline: none;
 }
   
-  input[type='range'],
-  input[type='range']::-webkit-slider-runnable-track,
-  input[type='range']::-webkit-slider-thumb {
+  input#vel,
+  input#vel::-webkit-slider-runnable-track,
+  input#vel::-webkit-slider-thumb {
     -webkit-appearance: none;
   }
   
-  input[type=range]::-webkit-slider-thumb {
+  input#vel::-webkit-slider-thumb {
     background-color: #777;
     width: 20px;
     height: 20px;
@@ -526,7 +671,7 @@ input[type='range']:focus {
     margin-top: -9px;
   }
   
-  input[type=range]::-moz-range-thumb {
+  input#vel::-moz-range-thumb {
     background-color: #777;
     width: 15px;
     height: 15px;
@@ -534,7 +679,7 @@ input[type='range']:focus {
     border-radius: 50%;
   }
   
-  input[type=range]::-ms-thumb {
+  input#vel::-ms-thumb {
     background-color: #777;
     width: 20px;
     height: 20px;
@@ -542,25 +687,25 @@ input[type='range']:focus {
     border-radius: 50%;
   }
   
-  input[type=range]::-webkit-slider-runnable-track {
+  input#vel::-webkit-slider-runnable-track {
     height: 3px;
     background:linear-gradient(to right, rgb(47, 149, 218) calc(var(--value)*1%), black 0);
   }
-  input[type=range]::-moz-range-track {
+  input#vel::-moz-range-track {
     height: 3px;
     background:linear-gradient(to right, rgb(47, 149, 218) calc(var(--value)*1%), black 0);
   }
   
-  input[type=range]::-ms-track {
+  input#vel::-ms-track {
     background-color: #777;
     height: 3px;
   } 
   
-  input[type=range]::-ms-fill-lower {
+  input#vel::-ms-fill-lower {
     background-color: rgb(47, 149, 218);
   }
   
-  input[type=range]::-ms-fill-upper {
+  input#vel::-ms-fill-upper {
     background-color: rgb(0, 0, 0);
   } 
   /*Boton ON/OFF*/
@@ -586,3 +731,90 @@ input[type='range']:focus {
 	position:relative;
 	top:1px;
 }
+
+/*Slider estación 3*/
+
+.slider-estacion3{
+
+    width: 100%;
+    margin-bottom: 10rem;
+}
+.slider-estacion3 {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 2.5rem; /* Specified height */
+    background: rgba(255,0,225,1);
+    background: -moz-linear-gradient(left, rgba(255,0,225,1) 0%, rgba(255,0,225,1) 4%, rgba(162,0,255,1) 12%, rgba(26,44,240,1) 23%, rgba(14,137,245,1) 33%, rgba(14,245,233,1) 44%, rgba(52,247,153,1) 55%, rgba(3,217,35,1) 66%, rgba(146,247,52,1) 77%, rgba(245,245,54,1) 85%, rgba(230,150,12,1) 91%, rgba(248,48,65,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,0,225,1)), color-stop(4%, rgba(255,0,225,1)), color-stop(12%, rgba(162,0,255,1)), color-stop(23%, rgba(26,44,240,1)), color-stop(33%, rgba(14,137,245,1)), color-stop(44%, rgba(14,245,233,1)), color-stop(55%, rgba(52,247,153,1)), color-stop(66%, rgba(3,217,35,1)), color-stop(77%, rgba(146,247,52,1)), color-stop(85%, rgba(245,245,54,1)), color-stop(91%, rgba(230,150,12,1)), color-stop(100%, rgba(248,48,65,1)));
+    background: -webkit-linear-gradient(left, rgba(255,0,225,1) 0%, rgba(255,0,225,1) 4%, rgba(162,0,255,1) 12%, rgba(26,44,240,1) 23%, rgba(14,137,245,1) 33%, rgba(14,245,233,1) 44%, rgba(52,247,153,1) 55%, rgba(3,217,35,1) 66%, rgba(146,247,52,1) 77%, rgba(245,245,54,1) 85%, rgba(230,150,12,1) 91%, rgba(248,48,65,1) 100%);
+    background: -o-linear-gradient(left, rgba(255,0,225,1) 0%, rgba(255,0,225,1) 4%, rgba(162,0,255,1) 12%, rgba(26,44,240,1) 23%, rgba(14,137,245,1) 33%, rgba(14,245,233,1) 44%, rgba(52,247,153,1) 55%, rgba(3,217,35,1) 66%, rgba(146,247,52,1) 77%, rgba(245,245,54,1) 85%, rgba(230,150,12,1) 91%, rgba(248,48,65,1) 100%);
+    background: -ms-linear-gradient(left, rgba(255,0,225,1) 0%, rgba(255,0,225,1) 4%, rgba(162,0,255,1) 12%, rgba(26,44,240,1) 23%, rgba(14,137,245,1) 33%, rgba(14,245,233,1) 44%, rgba(52,247,153,1) 55%, rgba(3,217,35,1) 66%, rgba(146,247,52,1) 77%, rgba(245,245,54,1) 85%, rgba(230,150,12,1) 91%, rgba(248,48,65,1) 100%);
+    background: linear-gradient(to right, rgba(255,0,225,1) 0%, rgba(255,0,225,1) 4%, rgba(162,0,255,1) 12%, rgba(26,44,240,1) 23%, rgba(14,137,245,1) 33%, rgba(14,245,233,1) 44%, rgba(52,247,153,1) 55%, rgba(3,217,35,1) 66%, rgba(146,247,52,1) 77%, rgba(245,245,54,1) 85%, rgba(230,150,12,1) 91%, rgba(248,48,65,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff00e1', endColorstr='#f83041', GradientType=1 );
+    outline: black; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: 1s; /* 0.2 seconds transition on hover */
+    transition: opacity 1s;
+  }
+  
+  /* Mouse-over effects */
+
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider-estacion3::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 1.5rem; /* Set a specific slider handle width */
+    height: 2.5rem; /* Slider handle height */
+    background: black; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider-estacion3::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    cursor: pointer; /* Cursor on hover */
+  }
+  .display-temperatura{
+      position: relative;
+      top: -80px; 
+      font-size:2rem;   
+  }
+
+  /*Slider de la estación 4*/
+  .slider-estacion4{
+
+    width: 100%;
+    margin-bottom: 10rem;
+}
+.slider-estacion4 {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 2.5rem; /* Specified height */
+    background-color: #068A2A;
+    outline: black; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: 1s; /* 0.2 seconds transition on hover */
+    transition: opacity 1s;
+  }
+  
+  /* Mouse-over effects */
+
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider-estacion4::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 1.5rem; /* Set a specific slider handle width */
+    height: 2.5rem; /* Slider handle height */
+    background: black; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider-estacion4::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    cursor: pointer; /* Cursor on hover */
+  }

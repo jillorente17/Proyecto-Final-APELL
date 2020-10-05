@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Station 1</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="/styles/visual.css">
 </head>
 <body>
@@ -47,33 +46,66 @@
                 
 
             <div class="contenedor-general centrar-texto">
-                <p class="casillas-ss">Piston states:</p> 
-                <p class="casillas-metadato">1</p>
+                <p class="casillas-ss">In Place</p>
+                <p class="casillas-metadato"id="in-place">1</p> 
+
+                <p class="casillas-ss">Piston states:</p>
+                <p class="casillas-metadato" id="estado-piston">1</p>
+
                 <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato">:="DB1200".est1:</p>
+                <p class="casillas-metadato" id="bandeja-entrante">1</p>
+            <!--":="DB1200".est1:"-->
             </div>
+            
 
             <div class="centrar-texto">
                 <br>
                 <div class="contenedor-baliza">
-                    <div class="luz-roja"></div>
-                        <div class="luz-verde"></div>
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">0</p></div>
+                        <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">1</p></div>
                 </div>
             </div>
         </div>
 
         <div id="sim-ecoimp" class="contenedor centrar-texto">
             <h2>simulation and economical impact</h2>
+               
+
+
         </div>
         <div class="informacion-station">
             <div class="centrar-texto">
                 <h3>Simulation</h3>
+                <div class="grid-informacion">
+
+                <form action="">
+                    <label for="fname" class="label-tank">Tank fill percentage</label><br>
+                    <input type="number" id="porcentaje" name="fname" min="0" max="100"><br>
+                    <button class="boton boton-amarillo" onclick="simulacion1()" type="button" >Ok</button>
+                 
+                    <p id="mensaje"></p>
+                    <div class="estacion-simulacion">
+                        <div class="piston-arriba-simulacion"></div>
+                        <div class="bandeja-simulacion"></div>
+                        <div class="piston-arriba-simulacion"></div>
+                    </div>
+                </form>
+                    <div class="contenedor-baliza-simulacion">
+                        <div class="luz-roja-apagada-simulacion"></div>
+                        <div class="luz-verde-apagada-simulacion"></div>
+                    </div>
             </div>
+            </div>
+
+
+
+
+
+            
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
             </div>
         </div>
-
 
 
     </main>
@@ -101,3 +133,101 @@
     </footer>
 </body>
 </html>
+<script>
+
+</script>
+<script type="text/javascript">
+    function controlador(){
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function(){
+    
+    var colorRojo = document.getElementById('color-luz-rojo');
+    var luzRoja = colorRojo.innerHTML;
+    var balizaRoja = document.getElementsByTagName('div');
+
+    var balizaPert = document.getElementById('bandeja-perturbacion');
+    var lanzarAlerta= balizaPert.innerHTML;
+    
+    if(lanzarAlerta==2){
+        alert('An error has ocurred')
+    };
+
+    if(luzRoja == 1){
+        balizaRoja[8].setAttribute('class','luz-roja');
+    }else{
+        balizaRoja[8].setAttribute('class','luz-roja-apagada');
+    };
+
+    var colorVerde = document.getElementById('color-luz-verde');
+    var luzVerde = colorVerde.innerHTML;
+    var balizaVerde = document.getElementsByTagName('div');
+    if(luzVerde == 1){
+        balizaVerde[9].setAttribute('class','luz-verde');
+    }else{
+        balizaVerde[9].setAttribute('class','luz-verde-apagada');
+    };
+});
+};
+setInterval(controlador(),1000)
+
+
+    function simulacion1(){
+
+
+        var porcentaje = document.getElementById('porcentaje').value;
+            if (porcentaje<=0 || porcentaje>100){
+                alert('The fill percentage is not correct, please set another value');
+            }else{
+                //suponiendo que cada 1 segundo se llena el 10% del tanque
+                var tiempoPor100 = (porcentaje/10);
+                var tiempoTotal = Math.round(tiempoPor100);
+                var colorRojoSim = document.getElementsByTagName('div');
+                var colorVerdeSim= document.getElementsByTagName('div');
+                var pisD =  document.getElementsByTagName('div');
+                var counter = 0;
+
+                var i = setInterval(function(){
+                    //pistones arriba
+                    pisD[15].setAttribute('class','piston-arriba-simulacion');
+                    pisD[17].setAttribute('class','piston-arriba-simulacion');
+                    counter++; //contador de iteraciones
+                    var load = Math.round((counter/tiempoTotal)*100); //porcentaje del proceso
+                    document.getElementById("mensaje").innerHTML = "The tank is filling, wait a while:"+load+"%";
+                    if(counter === tiempoTotal) {
+                        clearInterval(i); //mata el contador del setInterval cuando llega al número de interaciones 
+                        //pistones abajo
+                        pisD[15].setAttribute('class','piston-abajo-simulacion');
+                        pisD[17].setAttribute('class','piston-abajo-simulacion');
+                        //Evalua el porcentaje y dice rojo, verde o rojo verde por debajo, igual o encima de 50%
+                        if(porcentaje>100){
+                            colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                            colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
+
+                            //funcion alerta si es poca agua la que hay dentro del reactor
+                            setTimeout(()=>
+                            {alert("Warning, an error has ocurred");
+                            },1000);
+                        }
+                        else{
+                            colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
+                            colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');  
+                        }
+
+                        //funcion para reiniciar todo
+                        setTimeout(function Reset(){
+                            pisD[15].setAttribute('class','piston-arriba-simulacion');
+                            pisD[17].setAttribute('class','piston-arriba-simulacion');
+                            colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                            colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');
+                            document.getElementById("mensaje").innerHTML = "" ;
+                        }, 5000);
+                    }
+                }, 1000);
+                        
+
+
+
+    }
+    };
+
+</script>

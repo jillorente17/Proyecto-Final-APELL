@@ -47,16 +47,18 @@
                 
 
             <div class="contenedor-general centrar-texto">
+                <p class="casillas-ss">In - Place</p>
+                <p class="casillas-metadato">1</p>
                 <p class="casillas-ss">Piston states:</p> 
                 <p class="casillas-metadato">1</p>
                 <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato">:="DB1200".est4:</p>
+                <p class="casillas-metadato" id="bandeja-perturbacion">4</p>
             </div>
-
+            <!-- :="DB1200".est4: -->
             <div class="centrar-texto">
                 <div class="contenedor-baliza">
-                    <div class="luz-roja"></div>
-                        <div class="luz-verde"></div>
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">1</p></div>
+                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">1</p></div>
                 </div>
             </div>
         </div>
@@ -67,6 +69,27 @@
         <div class="informacion-station">
             <div class="centrar-texto">
                 <h3>Simulation</h3>
+                <div class="grid-informacion">
+                    <form action="">
+                <p>Revolutions per minute (RPM)</p>
+                    <div class="slider-estacion"><input class="slider-estacion4"id="slider-temperatura" type="range" min="0" max="10000" step="1" value="">
+                        <label class="display-temperatura"></label>
+                    </div>
+                    <button class="Button" onclick="bajarPistones()"type="button">Accept</button>
+                    <div class="estacion-simulacion">
+                        <div class="piston-arriba-simulacion"></div>
+                        <div class="bandeja-simulacion"></div>
+                        <div class="piston-arriba-simulacion"></div>
+                    </div>
+                </form>
+                   <div>
+                        <div class="contenedor-baliza-simulacion">
+                        <div class="luz-roja-apagada-simulacion"></div>
+                        <div class="luz-verde-apagada-simulacion"></div>
+                    </div>
+                    
+                    
+                </div>
             </div>
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
@@ -100,3 +123,81 @@
     </footer>
 </body>
 </html>
+
+<script>
+    function controlador(){
+   'use strict';
+   document.addEventListener('DOMContentLoaded', function(){});};
+   var input = document.querySelector("input[type=range]");
+   var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
+   var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
+   var colorRojo = document.getElementById('color-luz-rojo');
+   var luzRoja = colorRojo.innerHTML;
+   var balizaRoja = document.getElementsByTagName('div');
+   var balizaPert = document.getElementById('bandeja-perturbacion');
+   var lanzarAlerta= balizaPert.innerHTML;
+   
+           if(lanzarAlerta==5){
+               alert('An error has ocurred')
+           };
+
+           if(luzRoja == 1){
+               balizaRoja[8].setAttribute('class','luz-roja');
+           }else{
+               balizaRoja[8].setAttribute('class','luz-roja-apagada');
+           };
+
+           var colorVerde = document.getElementById('color-luz-verde');
+           var luzVerde = colorVerde.innerHTML;
+           var balizaVerde = document.getElementsByTagName('div');
+           if(luzVerde == 1){
+               balizaVerde[9].setAttribute('class','luz-verde');
+           }else{
+               balizaVerde[9].setAttribute('class','luz-verde-apagada');
+           };
+         actualizarInput(input) 
+   
+           input.addEventListener("input", function(evt) {
+           actualizarInput(input)
+           controlador();
+
+
+               colorRojoSim.setAttribute('class','luz-roja-simulacion');
+               colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
+
+               
+    
+         });
+   
+         function actualizarInput(input){
+           var label = input.parentElement.querySelector("label");
+           label.innerHTML = input.value;
+           var inputMin = input.getAttribute("min");
+           var inputMax = input.getAttribute("max");
+           var unidad = (inputMax - inputMin) / 100;
+           input.style.setProperty("--value", (input.value - inputMin)/unidad);
+
+ 
+         };
+         function bajarPistones(){
+             controlador();
+             let piston = document.querySelectorAll('.piston-arriba-simulacion');
+             
+             piston[0].setAttribute('class','piston-abajo-simulacion');
+             piston[1].setAttribute('class','piston-abajo-simulacion');
+
+             var colorRojoSim = document.querySelector('.luz-roja-simulacion');
+             var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
+
+             colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion')
+             colorVerdeSim.setAttribute('class','luz-verde-simulacion');
+               setTimeout(function Reset(){
+                   piston[0].setAttribute('class','piston-arriba-simulacion');
+                   piston[1].setAttribute('class','piston-arriba-simulacion');
+                   colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
+                   colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion');
+
+               }, 5000);
+         }
+         
+    </script>
