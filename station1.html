@@ -130,7 +130,7 @@
                 <a href="historics.html">Historics</a>
                 <a href="#sim-ecoimp">Simulation and Economical Impact</a>
             </nav>
-            <p class="copyright">Todos los Derechos Reservados 2020 &copy; </p>
+            <p class="copyright">Todos los Derechos Reservados 2020 &copy;</p>
         </div>
     </footer>
 </body>
@@ -263,6 +263,6 @@ funcionPrincipal=setInterval(controlador,1000);
             precioPerdFinal=precioPerdidas.toFixed(2);
             precioEnMoneda=new Intl.NumberFormat("de-DE").format(precioPerdFinal);
             document.getElementById('perdidas-simulacion1').innerHTML="The losses of the accident were:"+"$"+precioEnMoneda+"COP"
-            
+            controlador();
         };
 </script>
