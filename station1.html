@@ -137,9 +137,8 @@
 
 </script>
 <script type="text/javascript">
+
     function controlador(){
-    'use strict';
-    document.addEventListener('DOMContentLoaded', function(){
     
     var colorRojo = document.getElementById('color-luz-rojo');
     var luzRoja = colorRojo.innerHTML;
@@ -147,13 +146,18 @@
 
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
-    
+    console.log('ejecución completada');
     if(lanzarAlerta==2){
         alert('An error has ocurred')
     };
 
     if(luzRoja == 1){
         balizaRoja[8].setAttribute('class','luz-roja');
+         //funcion alerta si es poca agua la que hay dentro del reactor
+        setTimeout( ()=>{
+            alert("Warning, an error has ocurred");
+        }
+            ,1000);
     }else{
         balizaRoja[8].setAttribute('class','luz-roja-apagada');
     };
@@ -162,53 +166,72 @@
     var luzVerde = colorVerde.innerHTML;
     var balizaVerde = document.getElementsByTagName('div');
     if(luzVerde == 1){
+        
         balizaVerde[9].setAttribute('class','luz-verde');
     }else{
         balizaVerde[9].setAttribute('class','luz-verde-apagada');
     };
-});
-};
-setInterval(controlador(),1000)
+    };
+
+setInterval(controlador,1000);
 
 
     function simulacion1(){
 
 
         var porcentaje = document.getElementById('porcentaje').value;
-            if (porcentaje<=0 || porcentaje>100){
+            if (porcentaje<=0){
                 alert('The fill percentage is not correct, please set another value');
             }else{
+
                 //suponiendo que cada 1 segundo se llena el 10% del tanque
                 var tiempoPor100 = (porcentaje/10);
                 var tiempoTotal = Math.round(tiempoPor100);
+                if( tiempoTotal<1){
+                    tiempoTotal=1;
+                }
+                //Baliza de la simulación
                 var colorRojoSim = document.getElementsByTagName('div');
                 var colorVerdeSim= document.getElementsByTagName('div');
+
+                //pistones de la simulación
                 var pisD =  document.getElementsByTagName('div');
                 var counter = 0;
+
+
+                
+
 
                 var i = setInterval(function(){
                     //pistones arriba
                     pisD[15].setAttribute('class','piston-arriba-simulacion');
                     pisD[17].setAttribute('class','piston-arriba-simulacion');
+
                     counter++; //contador de iteraciones
                     var load = Math.round((counter/tiempoTotal)*100); //porcentaje del proceso
-                    document.getElementById("mensaje").innerHTML = "The tank is filling, wait a while:"+load+"%";
+                    document.getElementById("mensaje").innerHTML = "The tank is filling, wait for a while:"+load+"%"; //mensaje de espera
+
+
+
+
                     if(counter === tiempoTotal) {
                         clearInterval(i); //mata el contador del setInterval cuando llega al número de interaciones 
                         //pistones abajo
                         pisD[15].setAttribute('class','piston-abajo-simulacion');
                         pisD[17].setAttribute('class','piston-abajo-simulacion');
-                        //Evalua el porcentaje y dice rojo, verde o rojo verde por debajo, igual o encima de 50%
+                        //Evalua el porcentaje y dice rojo si está por encima del 100%, verde si está por debajo
                         if(porcentaje>=100){
+                            //encendido de luces si llega al 100% o más
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
 
-                            //funcion alerta si es poca agua la que hay dentro del reactor
-                            setTimeout(()=>
-                            {alert("Warning, an error has ocurred");
-                            },1000);
+                            document.getElementById('color-luz-rojo').innerHTML="1";
+                            document.getElementById('color-luz-verde').innerHTML="0";
+
+                           
                         }
                         else{
+                            //si es menor al 100%
                             colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');  
                         }
