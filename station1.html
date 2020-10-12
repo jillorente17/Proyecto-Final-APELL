@@ -104,6 +104,8 @@
             
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
+                <p>In this section, you will be able to calculate an estimated economical impact of losses of the simulation.</p>
+                <p id="perdidas-simulacion1"></p>
             </div>
         </div>
 
@@ -146,7 +148,7 @@
 
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
-    console.log('ejecución completada');
+
     if(lanzarAlerta==2){
         alert('An error has ocurred')
     };
@@ -154,10 +156,9 @@
     if(luzRoja == 1){
         balizaRoja[8].setAttribute('class','luz-roja');
          //funcion alerta si es poca agua la que hay dentro del reactor
-        setTimeout( ()=>{
             alert("Warning, an error has ocurred");
-        }
-            ,1000);
+            perdidasEcononomicas();
+
     }else{
         balizaRoja[8].setAttribute('class','luz-roja-apagada');
     };
@@ -173,7 +174,7 @@
     };
     };
 
-setInterval(controlador,1000);
+funcionPrincipal=setInterval(controlador,1000);
 
 
     function simulacion1(){
@@ -249,8 +250,19 @@ setInterval(controlador,1000);
                         
 
 
-
+          return(porcentaje)
     }
     };
-
+        function perdidasEcononomicas(){
+            clearInterval(funcionPrincipal);
+            var porcentaje = document.getElementById('porcentaje').value;
+            var porCiento = parseFloat(porcentaje/100);
+            //Si el tanque tiene la capacidad de almacenar 10000L de agua o cualquier material
+            var litrosTanque= parseFloat(10000/porCiento);
+            var precioPerdidas=(litrosTanque*595314.38/100);
+            precioPerdFinal=precioPerdidas.toFixed(2);
+            precioEnMoneda=new Intl.NumberFormat("de-DE").format(precioPerdFinal);
+            document.getElementById('perdidas-simulacion1').innerHTML="The losses of the accident were:"+"$"+precioEnMoneda+"COP"
+            
+        };
 </script>
