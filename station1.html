@@ -250,7 +250,7 @@ funcionPrincipal=setInterval(controlador,1000);
                         
 
 
-          return(porcentaje)
+         
     }
     };
         function perdidasEcononomicas(){
@@ -263,6 +263,10 @@ funcionPrincipal=setInterval(controlador,1000);
             precioPerdFinal=precioPerdidas.toFixed(2);
             precioEnMoneda=new Intl.NumberFormat("de-DE").format(precioPerdFinal);
             document.getElementById('perdidas-simulacion1').innerHTML="The losses of the accident were:"+"$"+precioEnMoneda+"COP"
+            setTimeout(()=>{
+            document.getElementById('color-luz-rojo').innerHTML="0";
+            document.getElementById('color-luz-verde').innerHTML="1";
             controlador();
+            },10000);
         };
 </script>
