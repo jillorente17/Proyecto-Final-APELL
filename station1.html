@@ -157,7 +157,7 @@
         balizaRoja[8].setAttribute('class','luz-roja');
          //funcion alerta si es poca agua la que hay dentro del reactor
             alert("Warning, an error has ocurred");
-            perdidasEcononomicas();
+           
 
     }else{
         balizaRoja[8].setAttribute('class','luz-roja-apagada');
@@ -225,7 +225,7 @@ funcionPrincipal=setInterval(controlador,1000);
                             //encendido de luces si llega al 100% o más
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
-
+                            perdidasEcononomicas();
                             document.getElementById('color-luz-rojo').innerHTML="1";
                             document.getElementById('color-luz-verde').innerHTML="0";
 

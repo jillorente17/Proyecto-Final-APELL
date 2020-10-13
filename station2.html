@@ -72,10 +72,17 @@
                     <div class="grid-informacion">
     
                     <form action="">
-                        <label for="fname" class="label-tank">Percentage of material 1</label>
+                        <label for="fname" class="label-tank">Percentage of Fats</label>
                         <input type="number" id="porcentaje-mat1" name="fname" min="0" max="100">
-                        <label for="fname" class="label-tank">Percentage of material 2</label>
+                        <label for="fname" class="label-tank">Percentage of pure sebum</label>
                         <input type="number" id="porcentaje-mat2" name="fname" min="0" max="100">
+                        <label for="fname" class="label-tank">Percentage of caustic soda</label>
+                        <input type="number" id="porcentaje-mat3" name="fname" min="0" max="100">
+                        <label for="fname" class="label-tank">Percentage of soda lye</label>
+                        <input type="number" id="porcentaje-mat4" name="fname" min="0" max="100">
+                        <label for="fname" class="label-tank">Percentage of salt dissolution</label>
+                        <input type="number" id="porcentaje-mat5" name="fname" min="0" max="100">
+                        
                         <button class="boton boton-amarillo" onclick="simulacion2Mat1()" type="button" >Ok</button>
                         <p id="mensaje1"></p>
 
@@ -104,8 +111,17 @@
 
 
 
-            <div class="centrar-texto">
-                <h3>Economical Impact</h3>
+
+                <div class="centrar-texto">
+                    <h3>Economical Impact</h3>
+                    <p>In this section, you will be able to calculate an estimated economical impact of losses of the simulation.</p>
+                    <p id="perdidas-mat1"></p>
+                    <p id="perdidas-mat2"></p>
+                    <p id="perdidas-mat3"></p>
+                    <p id="perdidas-mat4"></p>
+                    <p id="perdidas-mat5"></p>
+                    <p id="perdidas-mat-t"></p>
+                </div>
             </div>
         </div>
 
@@ -155,9 +171,9 @@
     var balizaRoja = document.getElementsByTagName('div');
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
-    console.log(lanzarAlerta);
     if(lanzarAlerta == 3){
         alert('An error has ocurred')
+        
     };
     
     if(luzRoja == 1){
@@ -177,7 +193,7 @@
     
 });
 };
-setInterval(controlador(),1000)
+funcionPrincipal=setInterval(controlador(),1000)
 
 
     function simulacion2Mat1(){
@@ -186,9 +202,17 @@ setInterval(controlador(),1000)
         
         var porcentajeMat1 = document.getElementById('porcentaje-mat1').value;
         var porcentajeMat2 = document.getElementById('porcentaje-mat2').value;
+        var porcentajeMat3 = document.getElementById('porcentaje-mat3').value;
+        var porcentajeMat4 = document.getElementById('porcentaje-mat4').value;
+        var porcentajeMat5 = document.getElementById('porcentaje-mat5').value;
 
 
-            if (porcentajeMat1<=0 || porcentajeMat1>100  ){
+            if (porcentajeMat1<=0 ||  
+             porcentajeMat2<=0 || 
+             porcentajeMat3<=0 ||  
+             porcentajeMat4<=0 || 
+             porcentajeMat5<=0){
+
                 alert('The percentage of material 1 is not correct, please set another value');
             }
             else{
@@ -196,8 +220,10 @@ setInterval(controlador(),1000)
                 var colorVerdeSim= document.getElementsByTagName('div');
                 var pisD =  document.getElementsByTagName('div');
                 var tiempoTotal1 = Math.round(porcentajeMat1/10);
-                var tiempoTotal2 = Math.round(porcentajeMat2/10);
-                var tiempoTotal  = Math.round(tiempoTotal1+tiempoTotal2);
+                var tiempoTotal2 = tiempoTotal1+Math.round(porcentajeMat2/10);
+                var tiempoTotal3 = tiempoTotal2+Math.round(porcentajeMat3/10);
+                var tiempoTotal4 = tiempoTotal3+Math.round(porcentajeMat4/10);
+                var tiempoTotal =   tiempoTotal4+Math.round(porcentajeMat5/10);
                 var counter = 0;     
 
 
@@ -205,9 +231,13 @@ setInterval(controlador(),1000)
                     counter++; //contador de iteraciones
                     var load = Math.round((counter/tiempoTotal)*100); //porcentaje del proceso
                     document.getElementById("mensaje1").innerHTML = "We are adding the materials, wait a while:"+load+"%";
-                    porcentaje1 = parseInt(porcentajeMat1);
-                    porcentaje2 = parseInt(porcentajeMat2);
-                    porcentajeTotal= porcentaje1+porcentaje2;
+                    porcentaje1 = porcentajeMat1;
+                    porcentaje2 = porcentajeMat2;
+                    porcentaje3 = porcentajeMat3;
+                    porcentaje4 = porcentajeMat4;
+                    porcentaje5 = porcentajeMat5;
+                    porcentajeTotal= ((+porcentaje1 + +porcentaje2)+(+porcentajeMat3 + +porcentajeMat4)+ (+porcentajeMat5));
+                    console.log(porcentajeTotal)
                     if(counter === tiempoTotal) {
                         clearInterval(i);
 
@@ -215,28 +245,42 @@ setInterval(controlador(),1000)
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');
                                 document.getElementById("mensaje1").innerHTML = "" ;
                             setTimeout(()=>{
-                            if(Math.abs(porcentajeMat1-porcentajeMat2)>30){
+                            if(Math.abs(porcentajeMat1-porcentajeMat2)>30 || Math.abs(porcentajeMat1-porcentajeMat3)>30 ||
+                            Math.abs(porcentajeMat1-porcentajeMat4)>30 || Math.abs(porcentajeMat1-porcentajeMat5)>30 ||
+                            Math.abs(porcentajeMat2-porcentajeMat3)>30 || Math.abs(porcentajeMat2-porcentajeMat4)>30
+                            || Math.abs(porcentajeMat2-porcentajeMat5)>30 || Math.abs(porcentajeMat3-porcentajeMat4)>30||
+                            Math.abs(porcentajeMat3-porcentajeMat5)>30 ||Math.abs(porcentajeMat4-porcentajeMat5)>30){
+
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
                                 alert('An error has ocurred: The diference between the materials is significant');
                                 pisD[15].setAttribute('class','piston-abajo-simulacion2');
                                 pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                                // escribir en el plc
+                                document.getElementById('color-luz-rojo').innerHTML="1";
+                                document.getElementById('color-luz-verde').innerHTML="0";
+                                perdidasEcononomicas();
                             }
                             else if((porcentajeTotal)>100){
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
-                                alert('An error has ocurred: the materials exceeds the capacity of the tank');
+                                alert('An error has ocurred');
                                 pisD[15].setAttribute('class','piston-abajo-simulacion2');
                                 pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                                //escribir en el plc
+                                document.getElementById('color-luz-rojo').innerHTML="1";
+                                document.getElementById('color-luz-verde').innerHTML="0";
                             }
                             else{
                                 colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion'); 
                                 pisD[15].setAttribute('class','piston-abajo-simulacion2');
                                 pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                                //escribir en el plc
+                                document.getElementById('color-luz-rojo').innerHTML="0";
+                                document.getElementById('color-luz-verde').innerHTML="1";
                             }
                                 setTimeout(function Reset(){
-
 
                                     pisD[15].setAttribute('class','piston-arriba-simulacion2');
                                     pisD[17].setAttribute('class','piston-arriba-simulacion2');
@@ -258,7 +302,66 @@ setInterval(controlador(),1000)
 
     }
     };
-      
+    function perdidasEcononomicas(){
+            clearInterval(funcionPrincipal);
+            var porcentajeMat1 = document.getElementById('porcentaje-mat1').value;
+            var porcentajeMat2 = document.getElementById('porcentaje-mat2').value;
+            var porcentajeMat3 = document.getElementById('porcentaje-mat3').value;
+            var porcentajeMat4 = document.getElementById('porcentaje-mat4').value;
+            var porcentajeMat5 = document.getElementById('porcentaje-mat5').value;
+            var porCiento1 = parseFloat(porcentajeMat1/100);
+            var porCiento2 = parseFloat(porcentajeMat2/100);
+            var porCiento3 = parseFloat(porcentajeMat3/100);
+            var porCiento4 = parseFloat(porcentajeMat4/100);
+            var porCiento5 = parseFloat(porcentajeMat5/100);
+
+
+
+            var perMat1 = ((porCiento1*305)*(+2016666.67 + +7500000))/305;
+            precioPerdFinal1=perMat1.toFixed(2);
+            precioEnMoneda1= new Intl.NumberFormat("de-DE").format(precioPerdFinal1);
+            console.log(precioEnMoneda1);
+            document.getElementById('perdidas-mat1').innerHTML="The losses of the material 1: "+"$"+precioEnMoneda1+"COP"
+
+
+            var perMat2 = ((porCiento2*120)*92918.52)/120;
+            precioPerdFinal2=perMat2.toFixed(2);
+            precioEnMoneda2= new Intl.NumberFormat("de-DE").format(precioPerdFinal2);
+            console.log(precioEnMoneda2);
+            document.getElementById('perdidas-mat2').innerHTML="The losses of the material 2: "+"$"+precioEnMoneda2+"COP"
+
+            var perMat3 = ((porCiento3*41)*4346000)/55;
+            precioPerdFinal3=perMat3.toFixed(2);
+            precioEnMoneda3= new Intl.NumberFormat("de-DE").format(precioPerdFinal3);
+            console.log(precioEnMoneda3);
+            document.getElementById('perdidas-mat3').innerHTML="The losses of the material 3: "+"$"+precioEnMoneda3+"COP"
+
+            var perMat4 = ((porCiento1*82)*287000)/55;
+            precioPerdFinal4=perMat4.toFixed(2);
+            precioEnMoneda4= new Intl.NumberFormat("de-DE").format(precioPerdFinal4);
+            console.log(precioEnMoneda4);
+            document.getElementById('perdidas-mat4').innerHTML="The losses of the material 4: "+"$"+precioEnMoneda4+"COP"
+
+            var perMat5 = ((porCiento5*185)*(+20300000+ +595314.38))/185;
+            precioPerdFinal5=perMat5.toFixed(2);
+            precioEnMoneda5= new Intl.NumberFormat("de-DE").format(precioPerdFinal5);
+            console.log(precioEnMoneda5);
+            document.getElementById('perdidas-mat5').innerHTML="The losses of the material 5: "+"$"+precioEnMoneda5+"COP"
+            
+            precioTotal= (+perMat1 + +perMat2)+(+perMat3+ +perMat4)+(+perMat5);
+            precioTot=precioTotal.toFixed(2);
+            precioEnMonedaT= new Intl.NumberFormat("de-DE").format(precioTot);
+            console.log(precioEnMonedaT);
+            document.getElementById('perdidas-mat-t').innerHTML="The total losses of the materials: "+"$"+precioEnMonedaT+"COP"
+            
+            
+            
+            setTimeout(()=>{
+            document.getElementById('color-luz-rojo').innerHTML="0";
+            document.getElementById('color-luz-verde').innerHTML="1";
+            controlador();
+            },10000);
+        };
 
 
 
