@@ -115,11 +115,23 @@
                 <div class="centrar-texto">
                     <h3>Economical Impact</h3>
                     <p>In this section, you will be able to calculate an estimated economical impact of losses of the simulation.</p>
+                    
+                    <p class="par1"></p>
                     <p id="perdidas-mat1"></p>
+                    
+                    <p class="par2"></p>
                     <p id="perdidas-mat2"></p>
+                    
+                    <p class="par3"></p>
                     <p id="perdidas-mat3"></p>
+                    
+                    <p class="par4"></p>
                     <p id="perdidas-mat4"></p>
+                   
+                    <p class="par5"></p>
                     <p id="perdidas-mat5"></p>
+                    
+                    <p class="par6"></p>
                     <p id="perdidas-mat-t"></p>
                 </div>
             </div>
@@ -165,7 +177,7 @@
     function controlador(){
     'use strict';
     document.addEventListener('DOMContentLoaded', function(){
-    
+
     var colorRojo = document.getElementById('color-luz-rojo');
     var luzRoja = colorRojo.innerHTML;
     var balizaRoja = document.getElementsByTagName('div');
@@ -237,19 +249,23 @@ funcionPrincipal=setInterval(controlador(),1000)
                     porcentaje4 = porcentajeMat4;
                     porcentaje5 = porcentajeMat5;
                     porcentajeTotal= ((+porcentaje1 + +porcentaje2)+(+porcentajeMat3 + +porcentajeMat4)+ (+porcentajeMat5));
-                    console.log(porcentajeTotal)
+                    //porcentajes de materiales traducirlo a tiempo (5s)
+
+
                     if(counter === tiempoTotal) {
                         clearInterval(i);
 
                                 colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');
                                 document.getElementById("mensaje1").innerHTML = "" ;
+                            
                             setTimeout(()=>{
-                            if(Math.abs(porcentajeMat1-porcentajeMat2)>30 || Math.abs(porcentajeMat1-porcentajeMat3)>30 ||
+                            if(
+                            Math.abs(porcentajeMat1-porcentajeMat2)>30 || Math.abs(porcentajeMat1-porcentajeMat3)>30 ||
                             Math.abs(porcentajeMat1-porcentajeMat4)>30 || Math.abs(porcentajeMat1-porcentajeMat5)>30 ||
-                            Math.abs(porcentajeMat2-porcentajeMat3)>30 || Math.abs(porcentajeMat2-porcentajeMat4)>30
-                            || Math.abs(porcentajeMat2-porcentajeMat5)>30 || Math.abs(porcentajeMat3-porcentajeMat4)>30||
-                            Math.abs(porcentajeMat3-porcentajeMat5)>30 ||Math.abs(porcentajeMat4-porcentajeMat5)>30){
+                            Math.abs(porcentajeMat2-porcentajeMat3)>30 || Math.abs(porcentajeMat2-porcentajeMat4)>30 || 
+                            Math.abs(porcentajeMat2-porcentajeMat5)>30 || Math.abs(porcentajeMat3-porcentajeMat4)>30 ||
+                            Math.abs(porcentajeMat3-porcentajeMat5)>30 || Math.abs(porcentajeMat4-porcentajeMat5)>30){
 
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
@@ -259,9 +275,12 @@ funcionPrincipal=setInterval(controlador(),1000)
                                 // escribir en el plc
                                 document.getElementById('color-luz-rojo').innerHTML="1";
                                 document.getElementById('color-luz-verde').innerHTML="0";
+                                
+                                
+                                
                                 perdidasEcononomicas();
                             }
-                            else if((porcentajeTotal)>100){
+                            else if((porcentajeTotal)>50){
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
                                 alert('An error has ocurred');
@@ -270,6 +289,7 @@ funcionPrincipal=setInterval(controlador(),1000)
                                 //escribir en el plc
                                 document.getElementById('color-luz-rojo').innerHTML="1";
                                 document.getElementById('color-luz-verde').innerHTML="0";
+                                perdidasEcononomicas();
                             }
                             else{
                                 colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
@@ -320,39 +340,38 @@ funcionPrincipal=setInterval(controlador(),1000)
             var perMat1 = ((porCiento1*305)*(+2016666.67 + +7500000))/305;
             precioPerdFinal1=perMat1.toFixed(2);
             precioEnMoneda1= new Intl.NumberFormat("de-DE").format(precioPerdFinal1);
-            console.log(precioEnMoneda1);
-            document.getElementById('perdidas-mat1').innerHTML="The losses of the material 1: "+"$"+precioEnMoneda1+"COP"
-
+            document.querySelector('.par1').innerHTML="The losses of the material 1:"
+            document.getElementById('perdidas-mat1').innerHTML="$"+precioEnMoneda1+"COP"
 
             var perMat2 = ((porCiento2*120)*92918.52)/120;
             precioPerdFinal2=perMat2.toFixed(2);
             precioEnMoneda2= new Intl.NumberFormat("de-DE").format(precioPerdFinal2);
-            console.log(precioEnMoneda2);
-            document.getElementById('perdidas-mat2').innerHTML="The losses of the material 2: "+"$"+precioEnMoneda2+"COP"
+            document.querySelector('.par2').innerHTML="The losses of the material 2:"
+            document.getElementById('perdidas-mat2').innerHTML="$"+precioEnMoneda2+"COP"
 
             var perMat3 = ((porCiento3*41)*4346000)/55;
             precioPerdFinal3=perMat3.toFixed(2);
             precioEnMoneda3= new Intl.NumberFormat("de-DE").format(precioPerdFinal3);
-            console.log(precioEnMoneda3);
-            document.getElementById('perdidas-mat3').innerHTML="The losses of the material 3: "+"$"+precioEnMoneda3+"COP"
+            document.querySelector('.par3').innerHTML="The losses of the material 3:"
+            document.getElementById('perdidas-mat3').innerHTML="$"+precioEnMoneda3+"COP"
 
             var perMat4 = ((porCiento1*82)*287000)/55;
             precioPerdFinal4=perMat4.toFixed(2);
             precioEnMoneda4= new Intl.NumberFormat("de-DE").format(precioPerdFinal4);
-            console.log(precioEnMoneda4);
-            document.getElementById('perdidas-mat4').innerHTML="The losses of the material 4: "+"$"+precioEnMoneda4+"COP"
+            document.querySelector('.par4').innerHTML="The losses of the material 4:"
+            document.getElementById('perdidas-mat4').innerHTML="$"+precioEnMoneda4+"COP"
 
             var perMat5 = ((porCiento5*185)*(+20300000+ +595314.38))/185;
             precioPerdFinal5=perMat5.toFixed(2);
             precioEnMoneda5= new Intl.NumberFormat("de-DE").format(precioPerdFinal5);
-            console.log(precioEnMoneda5);
-            document.getElementById('perdidas-mat5').innerHTML="The losses of the material 5: "+"$"+precioEnMoneda5+"COP"
+            document.querySelector('.par5').innerHTML="The losses of the material 5:"
+            document.getElementById('perdidas-mat5').innerHTML="$"+precioEnMoneda5+"COP"
             
             precioTotal= (+perMat1 + +perMat2)+(+perMat3+ +perMat4)+(+perMat5);
             precioTot=precioTotal.toFixed(2);
             precioEnMonedaT= new Intl.NumberFormat("de-DE").format(precioTot);
-            console.log(precioEnMonedaT);
-            document.getElementById('perdidas-mat-t').innerHTML="The total losses of the materials: "+"$"+precioEnMonedaT+"COP"
+            document.querySelector('.par6').innerHTML="The total losses:"
+            document.getElementById('perdidas-mat-t').innerHTML="$"+precioEnMonedaT+"COP"
             
             
             

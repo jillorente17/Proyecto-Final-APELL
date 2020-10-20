@@ -7,6 +7,7 @@
     <title>Station 1</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="/styles/visual.css">
+    
 </head>
 <body>
 
@@ -105,9 +106,11 @@
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
                 <p>In this section, you will be able to calculate an estimated economical impact of losses of the simulation.</p>
-                <p id="perdidas-simulacion1"></p>
-            </div>
-        </div>
+                
+
+                <p class="para-variar"></p>
+                <p class="perdidas-mat-t"></p>
+                <p id="tiempo-plc"></p>
 
 
     </main>
@@ -136,8 +139,9 @@
 </body>
 </html>
 <script>
-
+//cambiar límite a 50% de la capacidad del tanque
 </script>
+
 <script type="text/javascript">
 
     function controlador(){
@@ -167,7 +171,6 @@
     var luzVerde = colorVerde.innerHTML;
     var balizaVerde = document.getElementsByTagName('div');
     if(luzVerde == 1){
-        
         balizaVerde[9].setAttribute('class','luz-verde');
     }else{
         balizaVerde[9].setAttribute('class','luz-verde-apagada');
@@ -176,21 +179,28 @@
 
 funcionPrincipal=setInterval(controlador,1000);
 
-
     function simulacion1(){
 
 
         var porcentaje = document.getElementById('porcentaje').value;
+
+
             if (porcentaje<=0){
+
                 alert('The fill percentage is not correct, please set another value');
+
             }else{
 
                 //suponiendo que cada 1 segundo se llena el 10% del tanque
                 var tiempoPor100 = (porcentaje/10);
                 var tiempoTotal = Math.round(tiempoPor100);
+
                 if( tiempoTotal<1){
                     tiempoTotal=1;
-                }
+                };
+
+
+
                 //Baliza de la simulación
                 var colorRojoSim = document.getElementsByTagName('div');
                 var colorVerdeSim= document.getElementsByTagName('div');
@@ -198,10 +208,6 @@ funcionPrincipal=setInterval(controlador,1000);
                 //pistones de la simulación
                 var pisD =  document.getElementsByTagName('div');
                 var counter = 0;
-
-
-                
-
 
                 var i = setInterval(function(){
                     //pistones arriba
@@ -213,15 +219,21 @@ funcionPrincipal=setInterval(controlador,1000);
                     document.getElementById("mensaje").innerHTML = "The tank is filling, wait for a while:"+load+"%"; //mensaje de espera
 
 
-
+                    //PLC: perturbación extra por sotfware sería 5s*% ingresado
+                    var porcentajePLC = (porcentaje/100);
+                    console.log(porcentaje)
+                    console.log(porcentajePLC)
+                    var tiempoPLC = (porcentajePLC*5);
+                    console.log(tiempoPLC)
+                    document.getElementById("tiempo-plc").innerHTML = tiempoPLC
 
                     if(counter === tiempoTotal) {
                         clearInterval(i); //mata el contador del setInterval cuando llega al número de interaciones 
                         //pistones abajo
                         pisD[15].setAttribute('class','piston-abajo-simulacion');
                         pisD[17].setAttribute('class','piston-abajo-simulacion');
-                        //Evalua el porcentaje y dice rojo si está por encima del 100%, verde si está por debajo
-                        if(porcentaje>=100){
+                        //Evalua el porcentaje y dice rojo si está por encima del 50%, verde si está por debajo
+                        if(porcentaje>=50){
                             //encendido de luces si llega al 100% o más
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
@@ -244,6 +256,7 @@ funcionPrincipal=setInterval(controlador,1000);
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');
                             document.getElementById("mensaje").innerHTML = "" ;
+                            document.getElementById('perdidas-mat-t').innerHTML=""
                         }, 5000);
                     }
                 }, 1000);
@@ -254,6 +267,7 @@ funcionPrincipal=setInterval(controlador,1000);
     }
     };
         function perdidasEcononomicas(){
+            //función para calcular las perdidas económicas
             clearInterval(funcionPrincipal);
             var porcentaje = document.getElementById('porcentaje').value;
             var porCiento = parseFloat(porcentaje/100);
@@ -262,11 +276,13 @@ funcionPrincipal=setInterval(controlador,1000);
             var precioPerdidas=(litrosTanque*595314.38/100);
             precioPerdFinal=precioPerdidas.toFixed(2);
             precioEnMoneda=new Intl.NumberFormat("de-DE").format(precioPerdFinal);
-            document.getElementById('perdidas-simulacion1').innerHTML="The losses of the accident were:"+"$"+precioEnMoneda+"COP"
-            setTimeout(()=>{
-            document.getElementById('color-luz-rojo').innerHTML="0";
-            document.getElementById('color-luz-verde').innerHTML="1";
-            controlador();
-            },10000);
+            document.querySelector('.para-variar').innerHTML="The losses of the accident were:"
+            document.querySelector('.perdidas-mat-t').innerHTML="$"+precioEnMoneda ;
+
+            // setTimeout(()=>{
+            // document.getElementById('color-luz-rojo').innerHTML="0";
+            // document.getElementById('color-luz-verde').innerHTML="1";
+            // controlador();
+            // },10000);
         };
 </script>

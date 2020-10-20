@@ -103,6 +103,8 @@
             </div>
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
+                <p class="par"></p>
+                <p class="perdidas-mat-t"></p>
             </div>
         </div>
 
@@ -145,7 +147,7 @@
     var balizaRoja = document.getElementsByTagName('div');
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
-    
+        //enviar la temperatura al PLC
             if(lanzarAlerta==4){
                 alert('An error has ocurred')
             };
@@ -188,21 +190,44 @@
             var unidad = (inputMax - inputMin) / 100;
             input.style.setProperty("--value", (input.value - inputMin)/unidad);
 
-  
+            
           };
+          
+
           function bajarPistones(){
+            
+            if(input.value>35){
+                alert('The temperature is too high');
+                perdidasEconomicas()
+
+            }
               let piston = document.querySelectorAll('.piston-arriba-simulacion');
               var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
               var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
               piston[0].setAttribute('class','piston-abajo-simulacion');
               piston[1].setAttribute('class','piston-abajo-simulacion');
-                setTimeout(function Reset(){
+                
+          }
+          function perdidasEconomicas(){
+              
+                    var input = document.querySelector("input[type=range]").value;
+                    console.log(input)
+                    precioEnMonedaT= new Intl.NumberFormat("de-DE").format(input);
+                    console.log(precioEnMonedaT)
+                    var perdidaTotal = 7000000*(precioEnMonedaT/100);
+                    document.querySelector('.par').innerHTML="La perdida total fue de:"
+                    document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal+"COP"
+
+
+                    let piston = document.querySelectorAll('.piston-arriba-simulacion');
+                    var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
+                    var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
+                    setTimeout(function Reset(){
                     piston[0].setAttribute('class','piston-arriba-simulacion');
                     piston[1].setAttribute('class','piston-arriba-simulacion');
                     colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
-                    colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion');
+                    colorRojoSim.setAttribute('class','luz-roja-simulacion');
 
                 }, 5000);
-          }
-          
+                }
      </script>

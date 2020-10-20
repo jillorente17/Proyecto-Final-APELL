@@ -72,7 +72,7 @@
                 <div class="grid-informacion">
                     <form action="">
                 <p>Revolutions per minute (RPM)</p>
-                    <div class="slider-estacion"><input class="slider-estacion4"id="slider-temperatura" type="range" min="0" max="10000" step="1" value="">
+                    <div class="slider-estacion"><input class="slider-estacion4"id="slider-temperatura" type="range" min="0" max="60" step="1" value="">
                         <label class="display-temperatura"></label>
                     </div>
                     <button class="Button" onclick="bajarPistones()"type="button">Accept</button>
@@ -160,11 +160,13 @@
            input.addEventListener("input", function(evt) {
            actualizarInput(input)
            controlador();
-
-
-               colorRojoSim.setAttribute('class','luz-roja-simulacion');
-               colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
-
+// cambiar vel a Hz 
+// si la velocidad
+//perturbación vel /=30  
+            colorRojoSim.setAttribute('class','luz-roja-simulacion');
+            colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
+            document.getElementById('color-luz-rojo').innerHTML="1";
+            document.getElementById('color-luz-verde').innerHTML="0";
                
     
          });
@@ -177,7 +179,7 @@
            var unidad = (inputMax - inputMin) / 100;
            input.style.setProperty("--value", (input.value - inputMin)/unidad);
 
- 
+            //escribir velocidad en el plc.
          };
          function bajarPistones(){
              controlador();
