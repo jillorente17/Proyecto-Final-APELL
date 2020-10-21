@@ -133,6 +133,9 @@
                     
                     <p class="par6"></p>
                     <p id="perdidas-mat-t"></p>
+
+                    <p id="porcentaje-PLC"></p>
+                        
                 </div>
             </div>
         </div>
@@ -249,8 +252,10 @@ funcionPrincipal=setInterval(controlador(),1000)
                     porcentaje4 = porcentajeMat4;
                     porcentaje5 = porcentajeMat5;
                     porcentajeTotal= ((+porcentaje1 + +porcentaje2)+(+porcentajeMat3 + +porcentajeMat4)+ (+porcentajeMat5));
+                    
                     //porcentajes de materiales traducirlo a tiempo (5s)
-
+                    tempPLC = (porcentajeTotal/100*5);
+                    document.getElementById("porcentaje-PLC").innerHTML = tempPLC
 
                     if(counter === tiempoTotal) {
                         clearInterval(i);

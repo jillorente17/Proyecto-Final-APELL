@@ -70,6 +70,7 @@
                 <p class="casillas-ss">State of the converyor belt:</p> 
                 <p class="casillas-metadato">1</p>
                 <button type="submit" class="Button1">On/Off</button>
+                <!--state es para monitorear y StopRun para encender y apagar-->
             </div>
             <div class="contenedor-general centrar-texto">
                 <p class="casillas-ss">Speed of the converyor belt:</p>
@@ -180,5 +181,6 @@
             var inputMax = input.getAttribute("max");
             var unidad = (inputMax - inputMin) / 100;
             input.style.setProperty("--value", (input.value - inputMin)/unidad);  
+            
           } 
      </script>

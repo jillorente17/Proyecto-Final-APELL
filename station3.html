@@ -105,6 +105,7 @@
                 <h3>Economical Impact</h3>
                 <p class="par"></p>
                 <p class="perdidas-mat-t"></p>
+                <p id="temperatura-plc"></p>
             </div>
         </div>
 
@@ -147,7 +148,10 @@
     var balizaRoja = document.getElementsByTagName('div');
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
+
+
         //enviar la temperatura al PLC
+
             if(lanzarAlerta==4){
                 alert('An error has ocurred')
             };
@@ -189,7 +193,8 @@
             var inputMax = input.getAttribute("max");
             var unidad = (inputMax - inputMin) / 100;
             input.style.setProperty("--value", (input.value - inputMin)/unidad);
-
+            
+            
             
           };
           
@@ -198,6 +203,7 @@
             
             if(input.value>35){
                 alert('The temperature is too high');
+                document.getElementById("temperatura-plc").innerHTML = input.value;
                 perdidasEconomicas()
 
             }
@@ -222,12 +228,6 @@
                     let piston = document.querySelectorAll('.piston-arriba-simulacion');
                     var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
                     var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
-                    setTimeout(function Reset(){
-                    piston[0].setAttribute('class','piston-arriba-simulacion');
-                    piston[1].setAttribute('class','piston-arriba-simulacion');
-                    colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
-                    colorRojoSim.setAttribute('class','luz-roja-simulacion');
-
-                }, 5000);
+                    
                 }
      </script>
