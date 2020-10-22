@@ -1,3 +1,7 @@
+<!-- AWP_In_Variable Name='"DB1200".state' -->
+<!-- AWP_In_Variable Name='"DB1200".speed' -->
+<!-- AWP_In_Variable Name='"Stop_Run"' -->
+<!-- AWP_Enum_Def Name="listado" Values='0:"Detenido", 1:"Andando"' -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +38,7 @@
                 </nav>
             </div>
           
-        </div> <!-- contenedor -->
+        </div> 
     </header>
 
 
@@ -68,7 +72,7 @@
         <div class="grid-informacion">
             <div class="contenedor-general centrar-texto">
                 <p class="casillas-ss">State of the converyor belt:</p> 
-                <p class="casillas-metadato">1</p>
+                <p class="casillas-metadato">:="DB1200".state:</p>
                 <button type="submit" class="Button1">On/Off</button>
                 <!--state es para monitorear y StopRun para encender y apagar-->
             </div>
@@ -78,7 +82,7 @@
 
                 <form method="post">
                     <p><input name='DB1.DBD0' id="vel" type="range" min="0" max="60" step="1" value="">
-                    <label></label></p>
+                    <label class="display-velocidad"></label></p>
                     <button type="submit" class="Button">Set</button>
                 </form>
                 <br>
