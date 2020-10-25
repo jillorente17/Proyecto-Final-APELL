@@ -165,9 +165,6 @@ h4 {
     background-color: #aeed5c;
     border: 1px solid;
     border-color: black;
-   
-
-    
 }
 
 @media (min-width: 768px) {
@@ -487,12 +484,13 @@ p.casillas-metadato{
     text-align: center;
     margin-top: auto;
     background-color: rgba(137, 43, 226, 0);
+    padding-bottom: 5rem;
     font-size: 3rem !important;
   
 }
 label.display-velocidad{
     font-size: 3rem;
-    
+    font-weight: 900;
 }
 
 .contenedor.centrar-texto h2{

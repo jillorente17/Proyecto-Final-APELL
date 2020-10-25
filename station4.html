@@ -1,3 +1,8 @@
+<!-- AWP_In_Variable Name='"DB1200".est4balizaV' -->
+<!-- AWP_In_Variable Name='"DB1200".est4balizaR' -->
+<!-- AWP_In_Variable Name='"DB1200".est4pistones' -->
+<!-- AWP_In_Variable Name='"D1200".speed' -->
+<!-- AWP_In_Variable Name='"DB1200".est4' -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,18 +53,17 @@
                 
 
             <div class="contenedor-general centrar-texto">
-                <p class="casillas-ss">In - Place</p>
-                <p class="casillas-metadato">1</p>
+
                 <p class="casillas-ss">Piston states:</p> 
-                <p class="casillas-metadato">1</p>
+                <p class="casillas-metadato">:="DB1200".est4pistones:</p>
                 <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato" id="bandeja-perturbacion">4</p>
+                <p class="casillas-metadato" id="bandeja-perturbacion">:="DB1200".est4:</p>
             </div>
             <!-- :="DB1200".est4: -->
             <div class="centrar-texto">
                 <div class="contenedor-baliza">
-                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">1</p></div>
-                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">1</p></div>
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">=:"DB1200".est4balizaR:</p></div>
+                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">=:"DB1200".est4balizaV:</p></div>
                 </div>
             </div>
         </div>
@@ -96,7 +100,8 @@
                 <h3>Economical Impact</h3>
                 <p class="par"></p>
                 <p class="perdidas-mat-t"></p>
-                <p id="velocidad-plc"></p>
+                <p id="velocidad-plc" name="DB1200.est4pt"></p>
+                
             </div>
         </div>
 
@@ -186,6 +191,7 @@
 
             //escribir velocidad en el plc.
             document.getElementById("velocidad-plc").innerHTML = input;
+
          };
 
          function bajarPistones(){
@@ -239,3 +245,39 @@
           }, 5000);
           }
     </script>
+    <script src="Jquery/jquery.min.js">
+    </script>
+    
+    
+     <script>
+         //tener datos 
+                $(document).ready(function () {
+    
+    
+                // Enviar la información de los botones sin recargar la página.
+    
+                $().ajaxStart(function () {
+                    $('#loading').show();
+                    $('#result').hide(); 
+                }).ajaxStop(function () {
+                    $('#loading').hide();
+                    $('#result').fadeIn('fast');
+                });
+    
+                $('#porcent').click(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        
+                    success: function (data) {
+                        $('#result').html(data);
+                    }
+                    })
+    
+                return false;
+                
+                })});
+    
+    
+     </script>

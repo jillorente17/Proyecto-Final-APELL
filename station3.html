@@ -1,3 +1,10 @@
+<!-- AWP_In_Variable Name='"DB1200".est3balizaV' -->
+<!-- AWP_In_Variable Name='"DB1200".est3balizaR' -->
+<!-- AWP_In_Variable Name='"DB1200".est3pistones' -->
+<!-- AWP_In_Variable Name='"DB1200".boton3' -->
+<!-- AWP_In_Variable Name='"DB1200".est3pt' -->
+<!-- AWP_In_Variable Name='"DB1200".est3' -->
+<!-- AWP_In_Variable Name='"D1200".temperatura' -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,18 +55,16 @@
                 
 
             <div class="contenedor-general centrar-texto">
-                <p class="casillas-ss">In Place</p>
-                <p class="casillas-metadato"id="in-place">1</p> 
                 <p class="casillas-ss">Piston states:</p> 
-                <p class="casillas-metadato">1</p>
+                <p class="casillas-metadato">:="DB1200".est3pistones:</p>
                 <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato" id="bandeja-perturbacion">2</p>
+                <p class="casillas-metadato" id="bandeja-perturbacion">:="DB1200".est3:</p>
             </div>
             <!-- :="DB1200".est3: -->
             <div class="centrar-texto">
                 <div class="contenedor-baliza">
-                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">1</p></div>
-                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">1</p></div>
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">=:"DB1200".est3balizaR:</p></div>
+                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">=:"DB1200".est3balizaV:</p></div>
                 </div>
             </div>
         </div>
@@ -79,7 +84,7 @@
                         <input class="slider-estacion3"id="slider-temperatura" type="range" min="-10" max="100" step="1" value="">
                         <label class="display-temperatura"></label>
 
-                    <button class="Button" onclick="bajarPistones()"type="button">Accept</button>
+                    <button class="Button" onclick="bajarPistones()"type="button" id="porcent">Accept</button>
                     <div class="estacion-simulacion">
                         <div class="piston-arriba-simulacion"></div>
                         <div class="bandeja-simulacion"></div>
@@ -106,7 +111,9 @@
                 <h3>Economical Impact</h3>
                 <p class="par"></p>
                 <p class="perdidas-mat-t"></p>
-                <p id="temperatura-plc"></p>
+                <p id="temperatura-plc" name="DB1200.est3pt"></p>
+                <p id="push" name="DB1200.boton3"></p>
+                <p id="en-temperatura" name="D1200.temperatura"></p>
             </div>
         </div>
 
@@ -205,6 +212,8 @@
             if(input.value>35){
                 alert('The temperature is too high');
                 document.getElementById("temperatura-plc").innerHTML = input.value;
+                document.getElementById("push").innerHTML = 1;
+                document.getElementById("en-temperatura").innerHTML = 1;
                 perdidasEconomicas()
 
             }
@@ -232,3 +241,39 @@
                     
                 }
      </script>
+     <script src="Jquery/jquery.min.js">
+     </script>
+     
+     
+      <script>
+          //tener datos 
+                 $(document).ready(function () {
+     
+     
+                 // Enviar la información de los botones sin recargar la página.
+     
+                 $().ajaxStart(function () {
+                     $('#loading').show();
+                     $('#result').hide(); 
+                 }).ajaxStop(function () {
+                     $('#loading').hide();
+                     $('#result').fadeIn('fast');
+                 });
+     
+                 $('#porcent').click(function () {
+                     $.ajax({
+                         type: 'POST',
+                         url: $(this).attr('action'),
+                         data: $(this).serialize(),
+                         
+                     success: function (data) {
+                         $('#result').html(data);
+                     }
+                     })
+     
+                 return false;
+                 
+                 })});
+     
+     
+      </script>

@@ -1,3 +1,9 @@
+<!-- AWP_In_Variable Name='"DB1200".est1balizaV' -->
+<!-- AWP_In_Variable Name='"DB1200".est1balizaR' -->
+<!-- AWP_In_Variable Name='"DB1200".est1pistones' -->
+<!-- AWP_In_Variable Name='"DB1200".boton1' -->
+<!-- AWP_In_Variable Name='"DB1200".est1pt' -->
+<!-- AWP_In_Variable Name='"DB1200".est1' -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +37,7 @@
                     <a href="#sim-ecoimp">Simulation and Economical Impact</a>
                 </nav>
             </div>
-        </div> <!-- contenedor -->
+        </div> 
     </header>
 <!------------------------------------------------------------------------------------------------------------------------------------------>
     
@@ -48,23 +54,21 @@
                 
 
             <div class="contenedor-general centrar-texto">
-                <p class="casillas-ss">In Place</p>
-                <p class="casillas-metadato"id="in-place">1</p> 
-
-                <p class="casillas-ss">Piston states:</p>
-                <p class="casillas-metadato" id="estado-piston">1</p>
+            
+                <p class="casillas-ss">Secured tray</p>
+                <p class="casillas-metadato" id="estado-piston">:="DB1200".est1pistones:</p>
 
                 <p class="casillas-ss">Tray: </p>
-                <p class="casillas-metadato" id="bandeja-perturbacion">1</p>
-            <!--":="DB1200".est1:"-->
+                <p class="casillas-metadato" id="bandeja-perturbacion">:="DB1200".est1:</p>
+        
             </div>
             
 
             <div class="centrar-texto">
                 <br>
                 <div class="contenedor-baliza">
-                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">0</p></div>
-                        <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">1</p></div>
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">=:"DB1200".est1balizaR:</p></div>
+                        <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">=:"DB1200".est1balizaR:</p></div>
                 </div>
             </div>
         </div>
@@ -80,10 +84,10 @@
                 <h3>Simulation</h3>
                 <div class="grid-informacion">
 
-                <form action="">
+                <form method="post" action="" id="" name="">
                     <label for="fname" class="label-tank">Tank fill percentage</label><br>
                     <input type="number" id="porcentaje" name="fname" min="0" max="100"><br>
-                    <button class="boton boton-amarillo" onclick="simulacion1()" type="button" >Ok</button>
+                    <button class="boton boton-amarillo" onclick="simulacion1()" id="porcent"type="button" >Ok</button>
                  
                     <p id="mensaje"></p>
                     <div class="estacion-simulacion">
@@ -111,8 +115,8 @@
 
                 <p class="para-variar"></p>
                 <p class="perdidas-mat-t"></p>
-                <p id="tiempo-plc"></p>
-
+                <p id="tiempo-plc" name="DB1200.est1pt"></p>
+                <p id="push" name="DB1200.boton1"></p>
 
     </main>
 
@@ -227,6 +231,9 @@ funcionPrincipal=setInterval(controlador,1000);
                     var tiempoPLC = (porcentajePLC*5);
                     console.log(tiempoPLC)
                     document.getElementById("tiempo-plc").innerHTML = tiempoPLC
+                    document.getElementById("push").innerHTML = 1;
+
+
 
                     if(counter === tiempoTotal) {
                         clearInterval(i); //mata el contador del setInterval cuando llega al número de interaciones 
@@ -239,13 +246,12 @@ funcionPrincipal=setInterval(controlador,1000);
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
                             perdidasEcononomicas();
-                            document.getElementById('color-luz-rojo').innerHTML="1";
-                            document.getElementById('color-luz-verde').innerHTML="0";
+                        
 
                            
                         }
                         else{
-                            //si es menor al 100%
+                            //si es menor al 50%
                             colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');  
                         }
@@ -280,10 +286,41 @@ funcionPrincipal=setInterval(controlador,1000);
             document.querySelector('.para-variar').innerHTML="The losses of the accident were:"
             document.querySelector('.perdidas-mat-t').innerHTML="$"+precioEnMoneda ;
 
-            // setTimeout(()=>{
-            // document.getElementById('color-luz-rojo').innerHTML="0";
-            // document.getElementById('color-luz-verde').innerHTML="1";
-            // controlador();
-            // },10000);
         };
 </script>
+<script src="Jquery/jquery.min.js">
+</script>
+
+
+ <script>
+     //tener datos 
+            $(document).ready(function () {
+
+
+            // Enviar la información de los botones sin recargar la página.
+
+            $().ajaxStart(function () {
+                $('#loading').show();
+                $('#result').hide(); 
+            }).ajaxStop(function () {
+                $('#loading').hide();
+                $('#result').fadeIn('fast');
+            });
+
+            $('#porcent').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    
+                success: function (data) {
+                    $('#result').html(data);
+                }
+                })
+
+            return false;
+            
+            })});
+
+
+ </script>
