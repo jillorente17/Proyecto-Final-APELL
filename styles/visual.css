@@ -631,7 +631,8 @@ label.display-velocidad{
     margin-top:5%;
 }
 /*Resultado simulacion*/
-#tiempo-plc{
+#tiempo-plc, #velocidad-plc, #temperatura-plc,
+#en-temperatura, #push, #porcentaje-PLC {
     color:white;
 }
 .perdidas-mat-t {
