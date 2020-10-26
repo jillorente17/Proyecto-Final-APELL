@@ -86,7 +86,7 @@
                 <form method="post" action="" id="" name="">
                     <label for="fname" class="label-tank">Tank fill percentage</label><br>
                     <input type="number" id="porcentaje" name="fname" min="0" max="100"><br>
-                    <button class="boton boton-amarillo" onclick="simulacion1()" id="porcent"type="button" >Ok</button>
+                    <button class="boton boton-amarillo" onclick="simulacion1()" id="porcent"type="button">Ok</button>
                  
                     <p id="mensaje"></p>
                     <div class="estacion-simulacion">
@@ -114,8 +114,8 @@
 
                 <p class="para-variar"></p>
                 <p class="perdidas-mat-t"></p>
-                <p id="tiempo-plc" name="DB1200.est1pt"></p>
-                <p id="push" name="DB1200.boton1"></p>
+                <p id="tiempo-plc" name="DB1200.est1pt">:=DB1200.est1pt:</p>
+                <p id="push" name="DB1200.boton1">=:"DB1200".boton1:</p>
 
     </main>
 
@@ -305,6 +305,7 @@ funcionPrincipal=setInterval(controlador,1000);
                 $('#loading').hide();
                 $('#result').fadeIn('fast');
             });
+
 
             $('#porcent').click(function () {
                 $.ajax({
