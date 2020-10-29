@@ -115,7 +115,7 @@
                 <p class="para-variar"></p>
                 <p class="perdidas-mat-t"></p>
                 <p id="tiempo-plc" name="DB1200.est1pt">:=DB1200.est1pt:</p>
-                <p id="push" name="DB1200.boton1">=:"DB1200".boton1:</p>
+                <p id="push" name="DB1200.boton1">=:DB1200.boton1:</p>
 
     </main>
 
@@ -212,6 +212,7 @@ funcionPrincipal=setInterval(controlador,1000);
                 //pistones de la simulación
                 var pisD =  document.getElementsByTagName('div');
                 var counter = 0;
+                var botonSesion = document.querySelector('#porcent');
 
                 var i = setInterval(function(){
                     //pistones arriba
@@ -221,7 +222,7 @@ funcionPrincipal=setInterval(controlador,1000);
                     counter++; //contador de iteraciones
                     var load = Math.round((counter/tiempoTotal)*100); //porcentaje del proceso
                     document.getElementById("mensaje").innerHTML = "The tank is filling, wait for a while:"+load+"%"; //mensaje de espera
-
+                    botonSesion.disabled=true;
 
                     //PLC: perturbación extra por sotfware sería 5s*% ingresado
                     var porcentajePLC = (porcentaje/100);
@@ -235,6 +236,7 @@ funcionPrincipal=setInterval(controlador,1000);
 
 
                     if(counter === tiempoTotal) {
+                        botonSesion.disabled=false;
                         clearInterval(i); //mata el contador del setInterval cuando llega al número de interaciones 
                         //pistones abajo
                         pisD[15].setAttribute('class','piston-abajo-simulacion');
