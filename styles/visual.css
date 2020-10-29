@@ -242,7 +242,7 @@ h4 {
 @media (min-width: 768px) {
     .anuncio {
         flex: 0 0 calc(33.3% - 1rem);
-    }DB1200.est4pt
+    }
 }
 .contenido-anuncio {
     padding: 1rem;
