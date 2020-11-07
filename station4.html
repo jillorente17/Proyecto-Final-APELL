@@ -195,13 +195,18 @@
 
          function bajarPistones(){
              controlador();
-             if(input.value>30){
+             if(input.value>31){
                 alert('The speed is too high');
                 perdidasEconomicas()
 
-            }else if(input.value<30){
+            }else if(input.value<29){
                 alert('The speed is too low');
                 perdidasEconomicas
+            }else{
+                piston[0].setAttribute('class','piston-abajo-simulacion');
+                iston[1].setAttribute('class','piston-abajo-simulacion');
+                colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion')
+                colorVerdeSim.setAttribute('class','luz-verde-simulacion');
             }
              let piston = document.querySelectorAll('.piston-arriba-simulacion');
              

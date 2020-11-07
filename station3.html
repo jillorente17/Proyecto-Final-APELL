@@ -226,7 +226,8 @@
           function perdidasEconomicas(){
               
                     var input = document.querySelector("input[type=range]").value;
-                    console.log(input)
+                    console.log(input);
+                    // if (input.value<)
                     precioEnMonedaT= new Intl.NumberFormat("de-DE").format(input);
                     console.log(precioEnMonedaT)
                     var perdidaTotal = 70000000*(precioEnMonedaT/100);
