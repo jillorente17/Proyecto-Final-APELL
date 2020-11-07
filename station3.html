@@ -208,7 +208,7 @@
 
           function bajarPistones(){
             
-            if(input.value>35){
+            if(20<input.value>35){
                 alert('The temperature is too high');
                 document.getElementById("temperatura-plc").innerHTML = input.value;
                 document.getElementById("push").innerHTML = 1;
@@ -229,7 +229,7 @@
                     console.log(input)
                     precioEnMonedaT= new Intl.NumberFormat("de-DE").format(input);
                     console.log(precioEnMonedaT)
-                    var perdidaTotal = 7000000*(precioEnMonedaT/100);
+                    var perdidaTotal = 70000000*(precioEnMonedaT/100);
                     document.querySelector('.par').innerHTML="La perdida total fue de:"
                     document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal.toFixed(2)+"COP"
 
