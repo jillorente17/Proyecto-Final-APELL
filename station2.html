@@ -30,7 +30,7 @@
                 </div>
 
                 <nav id="navegacion" class="navegacion">
-                    <a href="/">Home</a>
+                    <a href="main.html">Home</a>
                     <a href="#Station-info">Station information</a>
                     <a href="#sim-ecoimp">Simulation and Economical Impact</a>
                 </nav>
@@ -271,11 +271,11 @@ funcionPrincipal=setInterval(controlador(),1000)
                             
                             setTimeout(()=>{
                             if(
-                            Math.abs(porcentajeMat1-porcentajeMat2)>30 || Math.abs(porcentajeMat1-porcentajeMat3)>30 ||
-                            Math.abs(porcentajeMat1-porcentajeMat4)>30 || Math.abs(porcentajeMat1-porcentajeMat5)>30 ||
-                            Math.abs(porcentajeMat2-porcentajeMat3)>30 || Math.abs(porcentajeMat2-porcentajeMat4)>30 || 
-                            Math.abs(porcentajeMat2-porcentajeMat5)>30 || Math.abs(porcentajeMat3-porcentajeMat4)>30 ||
-                            Math.abs(porcentajeMat3-porcentajeMat5)>30 || Math.abs(porcentajeMat4-porcentajeMat5)>30){
+                            Math.abs(porcentajeMat1-porcentajeMat2)>15 || Math.abs(porcentajeMat1-porcentajeMat3)>15 ||
+                            Math.abs(porcentajeMat1-porcentajeMat4)>15 || Math.abs(porcentajeMat1-porcentajeMat5)>15 ||
+                            Math.abs(porcentajeMat2-porcentajeMat3)>15 || Math.abs(porcentajeMat2-porcentajeMat4)>15 || 
+                            Math.abs(porcentajeMat2-porcentajeMat5)>15 || Math.abs(porcentajeMat3-porcentajeMat4)>15 ||
+                            Math.abs(porcentajeMat3-porcentajeMat5)>15 || Math.abs(porcentajeMat4-porcentajeMat5)>15){
 
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
@@ -317,6 +317,18 @@ funcionPrincipal=setInterval(controlador(),1000)
                                     colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                     colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');
                                     document.getElementById("mensaje1").innerHTML = "" ;
+                                    document.querySelector('.par1').innerHTML=""
+                                    document.getElementById('perdidas-mat1').innerHTML=""
+                                    document.querySelector('.par2').innerHTML=""
+                                    document.getElementById('perdidas-mat2').innerHTML=""
+                                    document.querySelector('.par3').innerHTML=""
+                                    document.getElementById('perdidas-mat3').innerHTML=""
+                                    document.querySelector('.par4').innerHTML=""
+                                    document.getElementById('perdidas-mat4').innerHTML=""
+                                    document.querySelector('.par5').innerHTML=""
+                                    document.getElementById('perdidas-mat5').innerHTML=""
+                                    document.querySelector('.par6').innerHTML=""
+                                    document.getElementById('perdidas-mat-t').innerHTML=""
 
                                 }, 5000);
                             

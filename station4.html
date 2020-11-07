@@ -30,7 +30,7 @@
                 </div>
 
                 <nav id="navegacion" class="navegacion">
-                    <a href="/">Home</a>
+                    <a href="main.html">Home</a>
                     <a href="#Station-info">Station information</a>
                     <a href="#sim-ecoimp">Simulation and Economical Impact</a>
                 </nav>
@@ -201,7 +201,7 @@
 
             }else if(input.value<30){
                 alert('The speed is too low');
-                perdidasEconomicas
+                perdidasEconomicas()
             }
              let piston = document.querySelectorAll('.piston-arriba-simulacion');
              
@@ -213,11 +213,12 @@
 
              colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion')
              colorVerdeSim.setAttribute('class','luz-verde-simulacion');
-               setTimeout(function Reset(){
-                   piston[0].setAttribute('class','piston-arriba-simulacion');
-                   piston[1].setAttribute('class','piston-arriba-simulacion');
-                   colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
-                   colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion');
+             setTimeout(function Reset(){
+
+                piston[0].setAttribute('class','piston-arriba-simulacion');
+                piston[1].setAttribute('class','piston-arriba-simulacion');
+                document.querySelector('.par').innerHTML=""
+                document.querySelector('.perdidas-mat-t').innerHTML=""
 
                }, 5000);
          }
@@ -229,19 +230,13 @@
               console.log(velocidadBanda)
               var perdidaTotal = 10000000*(velocidadBanda/60);
               document.querySelector('.par').innerHTML="La perdida total fue de:"
-              document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal+"COP"
+              document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal.toFixed(2)+"COP"
 
 
               let piston = document.querySelectorAll('.piston-arriba-simulacion');
               var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
               var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
-             setTimeout(function Reset(){
-             piston[0].setAttribute('class','piston-arriba-simulacion');
-             piston[1].setAttribute('class','piston-arriba-simulacion');
-            colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
-             colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion');
-
-          }, 5000);
+              
           }
     </script>
     <script src="Jquery/jquery.min.js">
