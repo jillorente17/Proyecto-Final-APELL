@@ -231,7 +231,7 @@
                     console.log(precioEnMonedaT)
                     var perdidaTotal = 7000000*(precioEnMonedaT/100);
                     document.querySelector('.par').innerHTML="La perdida total fue de:"
-                    document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal+"COP"
+                    document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal.toFixed(2)+"COP"
 
 
                     let piston = document.querySelectorAll('.piston-arriba-simulacion');

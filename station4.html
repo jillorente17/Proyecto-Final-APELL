@@ -227,9 +227,9 @@
               console.log(input)
               velocidadBanda= new Intl.NumberFormat("de-DE").format(input);
               console.log(velocidadBanda)
-              var perdidaTotal = 10000000*(velocidadBanda/100);
+              var perdidaTotal = 100000000*(velocidadBanda/60);
               document.querySelector('.par').innerHTML="La perdida total fue de:"
-              document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal+"COP"
+              document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal.toFixed(2)+"COP"
 
 
               let piston = document.querySelectorAll('.piston-arriba-simulacion');
