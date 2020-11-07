@@ -208,7 +208,7 @@
 
           function bajarPistones(){
             
-            if((input.value>35)&&(20>input.value)){
+            if((input.value>35)||(20>input.value)){
                 alert('The temperature is too high or low');
                 document.getElementById("temperatura-plc").innerHTML = input.value;
                 document.getElementById("push").innerHTML = 1;
