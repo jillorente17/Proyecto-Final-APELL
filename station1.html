@@ -31,7 +31,7 @@
                 </div>
 
                 <nav id="navegacion" class="navegacion">
-                    <a href="/">Home</a>
+                    <a href="/main.html">Home</a>
                     <a href="#Station-info">Station information</a>
                     <a href="#sim-ecoimp">Simulation and Economical Impact</a>
                 </nav>
@@ -149,14 +149,14 @@
 <script type="text/javascript">
 
     function controlador(){
-    
+    //Funciones para obtener los valores de la baliza de la banda
     var colorRojo = document.getElementById('color-luz-rojo');
     var luzRoja = colorRojo.innerHTML;
     var balizaRoja = document.getElementsByTagName('div');
 
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
-
+        //lanzar alertas en caso de que pasen estas bandejas, luz roja//
     if(lanzarAlerta==2){
         alert('An error has ocurred')
     };
@@ -170,10 +170,14 @@
     }else{
         balizaRoja[8].setAttribute('class','luz-roja-apagada');
     };
+        //lanzar alertas en caso de que pasen estas bandejas, luz verde//
+
 
     var colorVerde = document.getElementById('color-luz-verde');
     var luzVerde = colorVerde.innerHTML;
     var balizaVerde = document.getElementsByTagName('div');
+
+
     if(luzVerde == 1){
         balizaVerde[9].setAttribute('class','luz-verde');
     }else{
@@ -226,10 +230,7 @@ funcionPrincipal=setInterval(controlador,1000);
 
                     //PLC: perturbación extra por sotfware sería 5s*% ingresado
                     var porcentajePLC = (porcentaje/100);
-                    console.log(porcentaje)
-                    console.log(porcentajePLC)
                     var tiempoPLC = (porcentajePLC*5);
-                    console.log(tiempoPLC)
                     document.getElementById("tiempo-plc").innerHTML = tiempoPLC
                     document.getElementById("push").innerHTML = 1;
 
@@ -263,8 +264,8 @@ funcionPrincipal=setInterval(controlador,1000);
                             pisD[17].setAttribute('class','piston-arriba-simulacion');
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');
-                            document.getElementById("mensaje").innerHTML = "" ;
-                            document.getElementById('perdidas-mat-t').innerHTML=""
+                            document.querySelector('.para-variar').innerHTML=""
+                            document.querySelector('.perdidas-mat-t').innerHTML="" ;
                         }, 5000);
                     }
                 }, 1000);
