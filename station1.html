@@ -243,7 +243,16 @@ funcionPrincipal=setInterval(controlador,1000);
                         pisD[15].setAttribute('class','piston-abajo-simulacion');
                         pisD[17].setAttribute('class','piston-abajo-simulacion');
                         //Evalua el porcentaje y dice rojo si está por encima del 50%, verde si está por debajo
-                        if(porcentaje>=50){
+                        if(porcentaje>50){
+                            //encendido de luces si llega al 100% o más
+                            colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                            colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
+                            perdidasEcononomicas();
+                        
+
+                           
+                        }
+                        else if(porcentaje<20){
                             //encendido de luces si llega al 100% o más
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
