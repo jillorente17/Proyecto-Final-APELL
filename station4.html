@@ -99,6 +99,7 @@
         </div>
         <div class="centrar-texto">
             <h3>Economical Impact</h3>
+            <p>In this section, you will be able to calculate an estimated economical impact of losses of the simulation.</p>
             <p class="par"></p>
             <p class="perdidas-mat-t"></p>
             <p id="velocidad-plc" name="DB1200.est4pt">=:DB1200.est4pt:</p>
@@ -229,7 +230,7 @@
               velocidadBanda= new Intl.NumberFormat("de-DE").format(input);
               console.log(velocidadBanda)
               var perdidaTotal = 10000000*(velocidadBanda/60);
-              document.querySelector('.par').innerHTML="La perdida total fue de:"
+              document.querySelector('.par').innerHTML="The total losses were"
               document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal.toFixed(2)+"COP"
 
 

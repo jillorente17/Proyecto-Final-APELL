@@ -244,6 +244,10 @@ funcionPrincipal=setInterval(controlador(),1000)
                 var tiempoTotal3 = tiempoTotal2+Math.round(porcentajeMat3/10);
                 var tiempoTotal4 = tiempoTotal3+Math.round(porcentajeMat4/10);
                 var tiempoTotal =   tiempoTotal4+Math.round(porcentajeMat5/10);
+                if(tiempoTotal<1){
+                    tiempoTotal=1;
+                }
+
                 var counter = 0;     
 
 

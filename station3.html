@@ -108,6 +108,7 @@
             </div>
             <div class="centrar-texto">
                 <h3>Economical Impact</h3>
+                <p>In this section, you will be able to calculate an estimated economical impact of losses of the simulation.</p>
                 <p class="par"></p>
                 <p class="perdidas-mat-t"></p>
                 <p id="temperatura-plc" name="DB1200.est3pt">:="DB1200".est3pt</p>
@@ -207,6 +208,8 @@
           
 
           function bajarPistones(){
+            var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
+            var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
             var piston = document.querySelectorAll('.piston-arriba-simulacion');
             if((input.value>35)){
                 alert('The temperature is too high');
@@ -216,15 +219,19 @@
                 perdidasEconomicas()
 
             }else if(20>input.value){
+                var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
+                var colorVerdeSim= document.querySelector('.luz-verde-simulacion');
                 alert('The temperature is too low');
                 document.getElementById("temperatura-plc").innerHTML = input.value;
                 document.getElementById("push").innerHTML = 1;
                 document.getElementById("en-temperatura").innerHTML = 1;
                 perdidasEconomicas()
+                colorRojoSim.setAttribute('class','luz-roja-simulacion');
+                colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
+                
             }
               
-              var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
-              var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
+              
               piston[0].setAttribute('class','piston-abajo-simulacion');
               piston[1].setAttribute('class','piston-abajo-simulacion');
               setTimeout(function Reset(){
@@ -246,7 +253,7 @@
                     precioEnMonedaT= new Intl.NumberFormat("de-DE").format(input);
                     console.log(precioEnMonedaT)
                     var perdidaTotal = 70000000*(precioEnMonedaT/100);
-                    document.querySelector('.par').innerHTML="La perdida total fue de:"
+                    document.querySelector('.par').innerHTML="The total losses were:"
                     document.querySelector('.perdidas-mat-t').innerHTML="$"+perdidaTotal.toFixed(2)+"COP"
 
 
