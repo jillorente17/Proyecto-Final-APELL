@@ -245,6 +245,7 @@ funcionPrincipal=setInterval(controlador,1000);
                         //Evalua el porcentaje y dice rojo si está por encima del 50%, verde si está por debajo
                         if(porcentaje>50){
                             //encendido de luces si llega al 100% o más
+                            alert('The level of water is too high');
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
                             perdidasEcononomicas();
@@ -253,7 +254,7 @@ funcionPrincipal=setInterval(controlador,1000);
                            
                         }
                         else if(porcentaje<20){
-                            //encendido de luces si llega al 100% o más
+                            alert('The level of water is too low');
                             colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-simulacion'); 
                             perdidasEcononomicas();
@@ -262,7 +263,7 @@ funcionPrincipal=setInterval(controlador,1000);
                            
                         }
                         else{
-                            //si es menor al 50%
+                            
                             colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
                             colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion');  
                         }

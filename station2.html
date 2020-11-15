@@ -301,6 +301,17 @@ funcionPrincipal=setInterval(controlador(),1000)
                                 document.getElementById('color-luz-verde').innerHTML="0";
                                 perdidasEcononomicas();
                             }
+                            else if((porcentajeTotal)<10){
+                                colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
+                                colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
+                                alert('An error has ocurred');
+                                pisD[15].setAttribute('class','piston-abajo-simulacion2');
+                                pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
+                                //escribir en el plc
+                                document.getElementById('color-luz-rojo').innerHTML="1";
+                                document.getElementById('color-luz-verde').innerHTML="0";
+                                perdidasEcononomicas();
+                            }
                             else{
                                 colorVerdeSim[20].setAttribute('class','luz-verde-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-apagada-simulacion'); 
