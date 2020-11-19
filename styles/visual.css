@@ -20,6 +20,10 @@ body {
     padding-bottom: 3rem;
     
 }
+.contenedor-sesiones input{
+   width:  30rem;
+    
+}
 #user,#password{
     font-size: 2rem;
 }
