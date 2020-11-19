@@ -20,7 +20,7 @@ body {
     padding-bottom: 3rem;
     
 }
-.contenedor-sesiones input button{
+.contenedor-sesiones input,button{
    width:  30rem;
     
 }
