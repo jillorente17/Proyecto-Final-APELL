@@ -274,27 +274,7 @@ funcionPrincipal=setInterval(controlador(),1000)
                                 document.getElementById("mensaje1").innerHTML = "" ;
                             
                             setTimeout(()=>{
-                            if(
-                            Math.abs(porcentajeMat1-porcentajeMat2)>15 || Math.abs(porcentajeMat1-porcentajeMat3)>15 ||
-                            Math.abs(porcentajeMat1-porcentajeMat4)>15 || Math.abs(porcentajeMat1-porcentajeMat5)>15 ||
-                            Math.abs(porcentajeMat2-porcentajeMat3)>15 || Math.abs(porcentajeMat2-porcentajeMat4)>15 || 
-                            Math.abs(porcentajeMat2-porcentajeMat5)>15 || Math.abs(porcentajeMat3-porcentajeMat4)>15 ||
-                            Math.abs(porcentajeMat3-porcentajeMat5)>15 || Math.abs(porcentajeMat4-porcentajeMat5)>15){
-
-                                colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
-                                colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
-                                alert('An error has ocurred: The diference between the materials is significant');
-                                pisD[15].setAttribute('class','piston-abajo-simulacion2');
-                                pisD[17].setAttribute('class','piston-abajo-simulacion2'); 
-                                // escribir en el plc
-                                document.getElementById('color-luz-rojo').innerHTML="1";
-                                document.getElementById('color-luz-verde').innerHTML="0";
-                                
-                                
-                                
-                                perdidasEcononomicas();
-                            }
-                            else if((porcentajeTotal)>50){
+                            if((porcentajeTotal)>50){
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
                                 alert('An error has ocurred');
@@ -305,7 +285,7 @@ funcionPrincipal=setInterval(controlador(),1000)
                                 document.getElementById('color-luz-verde').innerHTML="0";
                                 perdidasEcononomicas();
                             }
-                            else if((porcentajeTotal)<10){
+                            else if((porcentajeTotal)<50){
                                 colorVerdeSim[20].setAttribute('class','luz-verde-apagada-simulacion');
                                 colorRojoSim[19].setAttribute('class','luz-roja-simulacion');  
                                 alert('An error has ocurred');
