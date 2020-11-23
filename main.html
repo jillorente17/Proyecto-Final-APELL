@@ -73,27 +73,27 @@
             <div class="contenedor-general centrar-texto">
                 <p class="casillas-ss">Turn on the converyor</p> 
                 <form action="">
-                <p class="casillas-metadato">:="DB1200".state:</p>
-                <button type="submit" class="Button1">On</button>
+                <p class="casillas-metadato" id="estado_banda1">1</p>
+                <button type="button" onclick="funcionEncender()" class="Button1">On</button>
                 <!--state es para monitorear y StopRun para encender y apagar-->
             </form>
             <form action="">
                 <p class="casillas-ss">Turn off the converyor</p> 
-                <p class="casillas-metadato">:="DB1200".state:</p>
-                <button type="submit" class="Button1">On</button>
+                <p class="casillas-metadato" id="estado_banda2">1</p>
+                <button type="button" onclick="funcionApagar()" class="Button1">Off</button>
                 <!--state es para monitorear y StopRun para encender y apagar-->
             </form>
             </div>
             <div class="contenedor-general centrar-texto">
                 <p class="casillas-ss">Speed of the converyor belt:</p>
-                <p class="casillas-metadato">:="DB1.DBD0":</p>
+                <p class="casillas-metadato" id="velocidad">0</p>
 
                 <form method="post" id="speed" name="speed">
                     <input   name="DB1200.speed" id="vel" type="range" min="0" max="60" step="1" value="">
                     
                     <label class="display-velocidad"></label>
                     <br>
-                    <button type="submit" value="veloc"  class="Button">Set</button>
+                    <button type="button" onclick="colocarVelocidad()"value="veloc"  class="Button">Set</button>
                 </form>
                 <br>
             </div>
@@ -198,7 +198,25 @@
             
           } 
      </script>
-
+<script>
+    function funcionEncender(){
+        estadoBanda1 = document.querySelector('#estado_banda2');
+        estadoBanda = document.querySelector('#estado_banda1');
+        estadoBanda.innerHTML = "1"
+        estadoBanda1.innerHTML = "1"
+    };
+    function funcionApagar(){
+        estadoBanda1 = document.querySelector('#estado_banda2');
+        estadoBanda = document.querySelector('#estado_banda1');
+        estadoBanda.innerHTML = "0"
+        estadoBanda1.innerHTML = "0"
+    };
+    function colocarVelocidad(){
+        velocidadBanda = document.querySelector('#vel');
+        velActual = document.querySelector('#velocidad');
+        velActual.innerHTML = velocidadBanda.value;
+    }
+</script>
 
      <script src="Jquery/jquery.min.js">
     </script>

@@ -54,15 +54,17 @@
             <div class="contenedor-general centrar-texto">
 
                 <p class="casillas-ss">Piston states:</p> 
-                <p class="casillas-metadato">:="DB1200".est4pistones:</p>
+                <p class="casillas-metadato" id="pistones">:="DB1200".est4pistones:</p>
                 <p class="casillas-ss">Tray: </p>
                 <p class="casillas-metadato" id="bandeja-perturbacion">:="DB1200".est4:</p>
             </div>
             <!-- :="DB1200".est4: -->
             <div class="centrar-texto">
                 <div class="contenedor-baliza">
-                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">=:"DB1200".est4balizaR:</p></div>
-                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">=:"DB1200".est4balizaV:</p></div>
+                    <div class="luz-roja-apagada"></div>
+                    <!-- <p class="opaco" id="color-luz-rojo">=:"DB1200".est4balizaR:</p> -->
+                    <div class="luz-verde-apagada"></div>
+                    <!-- <p class="opaco" id="color-luz-verde">=:"DB1200".est4balizaV:</p> -->
                 </div>
             </div>
         </div>
@@ -132,38 +134,70 @@
     </footer>
 </body>
 </html>
-
+<script>
+    var i = 1;
+    tray = document.querySelector('#bandeja-perturbacion');
+    pistones = document.querySelector('#pistones');
+    pistones.innerHTML = 'UP';
+    tray.innerHTML = i;
+    var colorRojo= document.querySelector('.luz-roja-apagada');
+    var colorVerde= document.querySelector('.luz-verde-apagada');
+    setInterval(()=>{
+        
+        funcionPistones();
+        tray.innerHTML = i;
+        i=i+1;
+        if(i==9){
+            i=1;
+            console.log('se reinició')
+        }
+        console.log('everything is going ok');
+    },20000);
+    function funcionPistones(){
+        colorRojo.setAttribute('class','luz-roja');
+        colorVerde.setAttribute('class','luz-verde-apagada');
+        pistones.innerHTML= 'UP'
+        setTimeout(()=>{
+            colorRojo.setAttribute('class','luz-roja-apagada');
+            colorVerde.setAttribute('class','luz-verde');
+            pistones.innerHTML='DOWN';
+        },5000);
+    }
+</script>
 <script>
     function controlador(){
    'use strict';
    document.addEventListener('DOMContentLoaded', function(){});};
    var input = document.querySelector("input[type=range]");
-   var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
-   var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
-   var colorRojo = document.getElementById('color-luz-rojo');
-   var luzRoja = colorRojo.innerHTML;
-   var balizaRoja = document.getElementsByTagName('div');
-   var balizaPert = document.getElementById('bandeja-perturbacion');
-   var lanzarAlerta= balizaPert.innerHTML;
-   
-           if(lanzarAlerta==5){
-               alert('An error has ocurred')
-           };
+    var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
+    var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
+    // var colorRojo = document.getElementById('color-luz-rojo');
+    // var luzRoja = colorRojo.innerHTML;
+    // var balizaRoja = document.getElementsByTagName('div');
+    var balizaPert = document.getElementById('bandeja-perturbacion');
+    var lanzarAlerta= balizaPert.innerHTML;
 
-           if(luzRoja == 1){
-               balizaRoja[8].setAttribute('class','luz-roja');
-           }else{
-               balizaRoja[8].setAttribute('class','luz-roja-apagada');
-           };
 
-           var colorVerde = document.getElementById('color-luz-verde');
-           var luzVerde = colorVerde.innerHTML;
-           var balizaVerde = document.getElementsByTagName('div');
-           if(luzVerde == 1){
-               balizaVerde[9].setAttribute('class','luz-verde');
-           }else{
-               balizaVerde[9].setAttribute('class','luz-verde-apagada');
-           };
+        //enviar la temperatura al PLC
+
+            if(lanzarAlerta==4){
+                alert('An error has ocurred')
+            };
+
+            // if(luzRoja == 1){
+            //     balizaRoja[8].setAttribute('class','luz-roja');
+            // }else{
+            //     balizaRoja[8].setAttribute('class','luz-roja-apagada');
+            // };
+
+            // var colorVerde = document.getElementById('color-luz-verde');
+            // var luzVerde = colorVerde.innerHTML;
+            // var balizaVerde = document.getElementsByTagName('div');
+            // if(luzVerde == 1){
+            //     balizaVerde[9].setAttribute('class','luz-verde');
+            // }else{
+            //     balizaVerde[9].setAttribute('class','luz-verde-apagada');
+            // };
          actualizarInput(input) 
    
            input.addEventListener("input", function(evt) {
