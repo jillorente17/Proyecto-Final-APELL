@@ -11,15 +11,16 @@ body {
     line-height: 2;
 }
 .contenedor-sesiones{
-    margin: auto auto;
     display: flex;
     flex-direction: column;
     font-weight: 600;
-    max-width: 15%;
+    width: 15%;
+    max-width:50%;
     font-size: 3rem;
     padding-bottom: 3rem;
     
 }
+
 #user,#password{
     font-size: 2rem;
 }

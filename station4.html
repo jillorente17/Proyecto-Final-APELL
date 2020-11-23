@@ -229,25 +229,32 @@
          };
 
          function bajarPistones(){
+            var colorRojoSim = document.querySelector('.luz-roja-simulacion');
+            var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
              controlador();
              if(input.value>30){
                 alert('The speed is too high');
                 perdidasEconomicas()
-
+            colorRojoSim.setAttribute('class','luz-roja-simulacion')
+            colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
             }else if(input.value<30){
                 alert('The speed is too low');
                 perdidasEconomicas()
+                colorRojoSim.setAttribute('class','luz-roja-simulacion')
+                colorVerdeSim.setAttribute('class','luz-verde-apagada-simulacion');
+            }else{
+                colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion')
+                colorVerdeSim.setAttribute('class','luz-verde-simulacion');
             }
+
              let piston = document.querySelectorAll('.piston-arriba-simulacion');
              
              piston[0].setAttribute('class','piston-abajo-simulacion');
              piston[1].setAttribute('class','piston-abajo-simulacion');
 
-             var colorRojoSim = document.querySelector('.luz-roja-simulacion');
-             var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
 
-             colorRojoSim.setAttribute('class','luz-roja-apagada-simulacion')
-             colorVerdeSim.setAttribute('class','luz-verde-simulacion');
+
+             
              setTimeout(function Reset(){
 
                 piston[0].setAttribute('class','piston-arriba-simulacion');
