@@ -419,6 +419,20 @@ h4 {
         border: solid 10px;
 
 }
+@media(max-width: 768px){
+    .contenedor-baliza{
+        height: 40rem;
+        background-color: black;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 2.5rem;
+        margin-bottom: auto;
+        border-radius: 5%;
+        padding-top: 1rem;
+        border: solid 10px;
+    }
+}
 
 /*luz roja*/
 .luz-roja-apagada{
@@ -525,9 +539,17 @@ label.display-velocidad{
 }
 .grid-informacion{
     display:grid;
-    align-items: centery;
+    align-items: center;
     grid-column-gap: 1rem;
     grid-template-columns: repeat(2,50%);
+}
+@media(max-width:768px){
+    .grid-informacion{
+    display:grid;
+    align-items: center;
+    grid-column-gap: 1rem;
+    grid-template-columns: 30%,70%;
+}
 }
 /*Simulación*/
 .label-tank{
