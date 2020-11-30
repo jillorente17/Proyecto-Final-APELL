@@ -62,10 +62,10 @@
             <!-- :="DB1200".est3: -->
             <div class="centrar-texto">
                 <div class="contenedor-baliza">
-                    <div class="luz-roja-apagada"></div>
-                    <!-- <p class="opaco" id="color-luz-rojo">=:"DB1200".est3balizaR:</p> -->
-                    <div class="luz-verde-apagada"></div>
-                    <!-- <p class="opaco" id="color-luz-verde">=:"DB1200".est3balizaV:</p> -->
+                    <div class="luz-roja-apagada"><p class="opaco" id="color-luz-rojo">=:"DB1200".est3balizaR:</p></div>
+                    
+                    <div class="luz-verde-apagada"><p class="opaco" id="color-luz-verde">=:"DB1200".est3balizaV:</p></div>
+                    
                 </div>
             </div>
         </div>
@@ -185,33 +185,34 @@
     var input = document.querySelector("input[type=range]");
     var colorRojoSim = document.querySelector('.luz-roja-apagada-simulacion');
     var colorVerdeSim= document.querySelector('.luz-verde-apagada-simulacion');
-    // var colorRojo = document.getElementById('color-luz-rojo');
-    // var luzRoja = colorRojo.innerHTML;
-    // var balizaRoja = document.getElementsByTagName('div');
+    var colorRojo = document.getElementById('color-luz-rojo');
+    var luzRoja = colorRojo.innerHTML;
+    var balizaRoja = document.getElementsByTagName('div');
     var balizaPert = document.getElementById('bandeja-perturbacion');
     var lanzarAlerta= balizaPert.innerHTML;
 
 
         //enviar la temperatura al PLC
-
+        document.getElementById("en-temperatura").innerHTML = input.value;
+        
             if(lanzarAlerta==4){
                 alert('An error has ocurred')
             };
 
-            // if(luzRoja == 1){
-            //     balizaRoja[8].setAttribute('class','luz-roja');
-            // }else{
-            //     balizaRoja[8].setAttribute('class','luz-roja-apagada');
-            // };
+            if(luzRoja == 1){
+             balizaRoja[8].setAttribute('class','luz-roja');
+         }else{
+                 balizaRoja[8].setAttribute('class','luz-roja-apagada');
+             };
 
-            // var colorVerde = document.getElementById('color-luz-verde');
-            // var luzVerde = colorVerde.innerHTML;
-            // var balizaVerde = document.getElementsByTagName('div');
-            // if(luzVerde == 1){
-            //     balizaVerde[9].setAttribute('class','luz-verde');
-            // }else{
-            //     balizaVerde[9].setAttribute('class','luz-verde-apagada');
-            // };
+            var colorVerde = document.getElementById('color-luz-verde');
+            var luzVerde = colorVerde.innerHTML;
+            var balizaVerde = document.getElementsByTagName('div');
+            if(luzVerde == 1){
+                 balizaVerde[9].setAttribute('class','luz-verde');
+            }else{
+            balizaVerde[9].setAttribute('class','luz-verde-apagada');
+            };
           actualizarInput(input) 
     
             input.addEventListener("input", function(evt) {
